@@ -346,6 +346,34 @@ describe("LSL Parser", () => {
       expect(stmt.update).not.toBeNull();
     });
 
+    it("should parse for loop with comma-separated init", () => {
+      const ast = parse(`
+        default { state_entry() {
+          integer i; integer j;
+          for (i = 0, j = 10; i < j; i++, j--) { llSay(0, "hi"); }
+        }}
+      `);
+      const stmt = ast.states[0].events[0].body[2] as any;
+      expect(stmt.type).toBe("ForStatement");
+      expect(stmt.init.type).toBe("SequenceExpression");
+      expect(stmt.init.expressions).toHaveLength(2);
+      expect(stmt.update.type).toBe("SequenceExpression");
+      expect(stmt.update.expressions).toHaveLength(2);
+    });
+
+    it("should parse for loop with triple comma-separated init", () => {
+      const ast = parse(`
+        default { state_entry() {
+          integer i; integer j; string s;
+          for (i = 0, j = 0, s = ""; i < 10; i++) { llSay(0, s); }
+        }}
+      `);
+      const stmt = ast.states[0].events[0].body[3] as any;
+      expect(stmt.type).toBe("ForStatement");
+      expect(stmt.init.type).toBe("SequenceExpression");
+      expect(stmt.init.expressions).toHaveLength(3);
+    });
+
     it("should parse do-while loop", () => {
       const ast = parse(`
         default { state_entry() {

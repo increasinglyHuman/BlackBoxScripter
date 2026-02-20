@@ -400,9 +400,10 @@ export class Parser {
     this.advance(); // for
     this.expect(TokenType.LeftParen);
 
+    // Init: may be comma-separated expressions (LSL allows: for(i=0, j=0; ...))
     let init: Expression | null = null;
     if (!this.check(TokenType.Semicolon)) {
-      init = this.parseExpression();
+      init = this.parseCommaExpressions();
     }
     this.expect(TokenType.Semicolon);
 
@@ -412,15 +413,36 @@ export class Parser {
     }
     this.expect(TokenType.Semicolon);
 
+    // Update: may also be comma-separated (for(...; ...; i++, j++))
     let update: Expression | null = null;
     if (!this.check(TokenType.RightParen)) {
-      update = this.parseExpression();
+      update = this.parseCommaExpressions();
     }
     this.expect(TokenType.RightParen);
 
     const body = this.parseStatement();
 
     return { type: "ForStatement", init, condition, update, body, loc };
+  }
+
+  /**
+   * Parse comma-separated expressions (C-style comma operator).
+   * Returns a single Expression if there's only one, or a SequenceExpression for multiple.
+   */
+  private parseCommaExpressions(): Expression {
+    const loc = this.current().loc;
+    const first = this.parseExpression();
+
+    if (!this.check(TokenType.Comma)) {
+      return first; // Single expression — no wrapping needed
+    }
+
+    const expressions: Expression[] = [first];
+    while (this.check(TokenType.Comma)) {
+      this.advance(); // consume ,
+      expressions.push(this.parseExpression());
+    }
+    return { type: "SequenceExpression", expressions, loc };
   }
 
   private parseWhile(): Statement {

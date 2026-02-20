@@ -131,8 +131,8 @@ export class Lexer {
     while (this.pos < this.source.length) {
       const ch = this.source[this.pos];
 
-      // Whitespace (includes \0 null terminators and \uFEFF BOM from OAR/Windows sources)
-      if (ch === " " || ch === "\t" || ch === "\r" || ch === "\n" || ch === "\0" || ch === "\uFEFF") {
+      // Whitespace (includes \0 null terminators, \uFEFF BOM, \u00A0 NBSP from various sources)
+      if (ch === " " || ch === "\t" || ch === "\r" || ch === "\n" || ch === "\0" || ch === "\uFEFF" || ch === "\u00A0") {
         this.advance();
         continue;
       }

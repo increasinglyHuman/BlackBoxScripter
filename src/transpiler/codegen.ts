@@ -212,6 +212,8 @@ export class CodeGenerator {
         return this.exprCallsAsync(expr.value);
       case "ParenthesizedExpression":
         return this.exprCallsAsync(expr.expression);
+      case "SequenceExpression":
+        return expr.expressions.some((e) => this.exprCallsAsync(e));
       default:
         return false;
     }
@@ -262,6 +264,8 @@ export class CodeGenerator {
         return this.exprCallsUserAsync(expr.value);
       case "ParenthesizedExpression":
         return this.exprCallsUserAsync(expr.expression);
+      case "SequenceExpression":
+        return expr.expressions.some((e) => this.exprCallsUserAsync(e));
       default:
         return false;
     }
@@ -336,6 +340,8 @@ export class CodeGenerator {
         return this.exprUsesDetected(expr.target) || this.exprUsesDetected(expr.value);
       case "ParenthesizedExpression":
         return this.exprUsesDetected(expr.expression);
+      case "SequenceExpression":
+        return expr.expressions.some((e) => this.exprUsesDetected(e));
       default:
         return false;
     }
@@ -402,6 +408,9 @@ export class CodeGenerator {
           break;
         case "ParenthesizedExpression":
           walkExpr(expr.expression);
+          break;
+        case "SequenceExpression":
+          expr.expressions.forEach(walkExpr);
           break;
       }
     };
@@ -873,6 +882,9 @@ function lslInsertString(s: string, pos: number, insert: string): string {
 
       case "ParenthesizedExpression":
         return `(${this.emitExpression(expr.expression)})`;
+
+      case "SequenceExpression":
+        return expr.expressions.map((e) => this.emitExpression(e)).join(", ");
 
       default:
         return "/* unknown expr */";

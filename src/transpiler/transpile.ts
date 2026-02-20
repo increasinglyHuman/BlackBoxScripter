@@ -14,6 +14,8 @@ import type { TranspileOptions, TranspileResult } from "./types.js";
  * Preprocess LSL source to handle common real-world artifacts:
  * - HTML entities from web-scraped scripts (&lt; → <, &gt; → >, etc.)
  * - Git merge conflict markers (<<<<<<< / ======= / >>>>>>>)
+ * - Smart/curly quotes from word processors and web sources
+ * - Registered trademark and other decorative Unicode symbols
  */
 function preprocess(source: string): string {
   let s = source;
@@ -28,6 +30,15 @@ function preprocess(source: string): string {
   if (s.includes("<<<<<<<")) {
     s = s.replace(/<{7}[^\r\n]*\r?\n([\s\S]*?)={7}\r?\n[\s\S]*?>{7}[^\r\n]*/g, "$1");
   }
+
+  // Normalize smart/curly quotes → straight quotes
+  // Common in scripts copy-pasted from Word, web forums, or rich text editors
+  s = s.replace(/[\u2018\u2019\u201A\u2039\u203A]/g, "'");  // '' → '
+  s = s.replace(/[\u201C\u201D\u201E\u00AB\u00BB]/g, '"');   // "" → "
+
+  // Strip decorative Unicode symbols that sometimes appear in LSL comments
+  // but cause lexer errors when they leak outside comments (®, ©, ™, etc.)
+  s = s.replace(/[\u00AE\u00A9\u2122]/g, "");
 
   return s;
 }

@@ -280,7 +280,8 @@ export type Expression =
   | FunctionCallExpression
   | TypeCastExpression
   | MemberExpression
-  | ParenthesizedExpression;
+  | ParenthesizedExpression
+  | SequenceExpression;
 
 export interface IntegerLiteral extends BaseNode {
   type: "IntegerLiteral";
@@ -369,6 +370,12 @@ export interface MemberExpression extends BaseNode {
 export interface ParenthesizedExpression extends BaseNode {
   type: "ParenthesizedExpression";
   expression: Expression;
+}
+
+/** Comma-separated expressions (C-style comma operator, used in for-loop init/update) */
+export interface SequenceExpression extends BaseNode {
+  type: "SequenceExpression";
+  expressions: Expression[];
 }
 
 // ============================================================

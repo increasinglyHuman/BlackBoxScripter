@@ -169,6 +169,46 @@ describe("Transpile end-to-end", () => {
     });
   });
 
+  describe("preprocessing", () => {
+    it("should normalize smart/curly quotes", () => {
+      // U+2018/2019 → ', U+201C/201D → "
+      const result = transpile(`default { state_entry() { llSay(0, \u201CHello\u201D); } }`);
+      expect(result.success).toBe(true);
+      expect(result.code).toContain('"Hello"');
+    });
+
+    it("should handle non-breaking space (U+00A0)", () => {
+      const result = transpile(`default\u00A0{ state_entry() { llSay(0, "hi"); } }`);
+      expect(result.success).toBe(true);
+    });
+  });
+
+  describe("for-loop multi-init", () => {
+    it("should transpile for loop with comma-separated init", () => {
+      const source = `
+        default { state_entry() {
+          integer i; integer j;
+          for (i = 0, j = 10; i < j; i++) { llSay(0, "hi"); }
+        }}
+      `;
+      const result = transpile(source);
+      expect(result.success).toBe(true);
+      expect(result.code).toContain("i = 0, j = 10");
+    });
+
+    it("should transpile for loop with comma-separated update", () => {
+      const source = `
+        default { state_entry() {
+          integer i; integer j;
+          for (i = 0, j = 10; i < j; i++, j--) { llSay(0, "hi"); }
+        }}
+      `;
+      const result = transpile(source);
+      expect(result.success).toBe(true);
+      expect(result.code).toContain("i++, j--");
+    });
+  });
+
   describe("error handling", () => {
     it("should return error result for invalid syntax", () => {
       const result = transpile("this is not valid LSL at all {{{");

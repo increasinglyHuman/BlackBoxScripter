@@ -59,8 +59,12 @@ const failures: FailureRecord[] = [];
 const errorPatterns = new Map<string, number>();
 
 for (const file of lslFiles) {
-  const source = readFileSync(file, "utf-8");
+  let source = readFileSync(file, "utf-8");
   const relPath = relative(corpusDir, file);
+
+  // Strip OutWorldz metadata header (// :CATEGORY: ... // :CODE:)
+  // The actual LSL code starts after the "// :CODE:" marker line.
+  source = stripOutWorldzHeader(source);
 
   try {
     const result = transpile(source, { filename: relPath });
@@ -123,4 +127,39 @@ process.exitCode = fail > 0 ? 1 : 0;
 function extractPattern(msg: string): string {
   // Normalize error messages by removing line/col numbers
   return msg.replace(/\[\d+:\d+\]\s*/, "").replace(/"[^"]*"/g, '"..."');
+}
+
+/**
+ * Strip OutWorldz site metadata header from script content.
+ *
+ * OutWorldz scripts have a header format:
+ *   // :CATEGORY:Animal
+ *   // :NAME:ScriptName
+ *   // :DESCRIPTION:
+ *   // ... description text (sometimes missing // prefix) ...
+ *   // :CODE:
+ *   <actual LSL code starts here>
+ *
+ * Some files have non-code text between :DESCRIPTION: and :CODE: that
+ * lost its "//" comment prefix, causing parse errors.
+ */
+function stripOutWorldzHeader(source: string): string {
+  const marker = "// :CODE:";
+  const idx = source.indexOf(marker);
+  if (idx === -1) return source;
+
+  // Skip past the marker line (OutWorldz uses \r\r\n double-CR line endings)
+  let start = idx + marker.length;
+  while (source[start] === "\r" || source[start] === "\n") start++;
+  let code = source.slice(start);
+
+  // Strip leading "1" artifact from OutWorldz export.
+  // Database row number leaks into export as: "1// comment..." or "1\r\n"
+  // May be preceded by blank lines.
+  const trimmed = code.replace(/^[\r\n]+/, "");
+  if (trimmed.startsWith("1") && (trimmed[1] === "/" || trimmed[1] === "\r" || trimmed[1] === "\n")) {
+    code = trimmed.slice(1);
+  }
+
+  return code;
 }
