@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && node scripts/build-worker.mjs",
+    "build:worker": "node scripts/build-worker.mjs",
     "test": "vitest",
     "test:run": "vitest run",
     "lint": "tsc --noEmit",
