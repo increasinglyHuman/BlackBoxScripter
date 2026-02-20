@@ -1,5 +1,5 @@
 /**
- * Core math types for the poqpoq script engine.
+ * Core math types for Black Box Scripter.
  * These map directly to LSL's vector and rotation types,
  * and align with Babylon.js equivalents for engine integration.
  */

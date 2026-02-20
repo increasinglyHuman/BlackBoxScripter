@@ -1,5 +1,5 @@
 /**
- * poqpoq Script Engine — API exports
+ * Black Box Scripter — API exports
  */
 
 export type { WorldAPI, HttpResponse, StorageAPI, HttpAPI, EnvironmentAPI } from "./world-api.js";

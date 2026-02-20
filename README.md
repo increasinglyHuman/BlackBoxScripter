@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="favicon.svg" width="120" alt="poqpoq fox kit" />
+  <img src="favicon.svg" width="120" alt="Black Box Scripter" />
 </p>
 
-<h1 align="center">poqpoq Script Engine</h1>
+<h1 align="center">Black Box Scripter</h1>
 
 <p align="center">
-  <strong>TypeScript-based scripting for the open metaverse</strong><br>
+  <strong>TypeScript scripting SDK for the open metaverse</strong><br>
   Built on 25 years of virtual world heritage. Modernized for the browser era.
 </p>
 
@@ -23,6 +23,7 @@
   <a href="LICENSE">MIT License</a> ·
   <a href="docs/adr/ADR-001-language-and-runtime-architecture.md">Architecture (ADR-001)</a> ·
   <a href="docs/adr/ADR-002-integration-layer-architecture.md">Integration (ADR-002)</a> ·
+  <a href="docs/adr/ADR-003-phase-6-and-cross-repo-integration.md">Phase 6 & Cross-Repo (ADR-003)</a> ·
   <a href="https://poqpoq.com/world/">poqpoq World</a>
 </p>
 
@@ -30,7 +31,7 @@
 
 ## What Is This?
 
-A modular scripting engine for [poqpoq World](https://poqpoq.com/world/) that gives creators the power to make interactive objects, NPCs, games, and experiences — all in TypeScript, all in the browser.
+**Black Box Scripter** is the scripting SDK for [poqpoq World](https://poqpoq.com/world/). It gives creators the power to make interactive objects, NPCs, games, and experiences — all in TypeScript, all in the browser.
 
 **Backward compatible** with LSL (Linden Scripting Language) and OSSL (OpenSim Scripting Language) through an automatic transpiler. Import a 15-year-old OpenSim region and watch its scripts come alive.
 
@@ -40,7 +41,7 @@ LSL shipped in 2003. It gave us event-driven objects, state machines, and a scri
 
 We keep what works. We fix what doesn't.
 
-| LSL (2003) | poqpoq Script Engine (2026) |
+| LSL (2003) | Black Box Scripter (2026) |
 |---|---|
 | 64KB memory per script | No artificial limits |
 | No arrays, no structs | Full TypeScript: Map, Set, classes, generics |
@@ -55,7 +56,7 @@ We keep what works. We fix what doesn't.
 ## Quick Look
 
 ```typescript
-import { WorldScript, type Agent } from "poqpoq/types";
+import { WorldScript, type Agent } from "blackbox-scripter";
 
 export default class MagicDoor extends WorldScript {
   states = {
@@ -125,12 +126,12 @@ docs/adr/       Architecture Decision Records
 | 2. Runtime | **Done** | Worker pool, SES sandbox, event dispatch, timers, inter-script messaging |
 | 3. Transpiler | **Done** | LSL lexer/parser/codegen, type tracker, function resolver |
 | 4. Editor | **Done** | Monaco + IntelliSense + dual TS/LSL mode + full UI shell |
-| 5. Integration | **In Progress** | Protocol types, OAR bundle pipeline, host adapter ([ADR-002](docs/adr/ADR-002-integration-layer-architecture.md)) |
-| 6. Polish | Planned | Example library, docs, migration guide |
+| 5. Integration | **Done** | Protocol types, OAR bundle pipeline, host adapter ([ADR-002](docs/adr/ADR-002-integration-layer-architecture.md)) |
+| 6. Polish | **Next** | Example library, docs, migration guide, cross-repo wiring ([ADR-003](docs/adr/ADR-003-phase-6-and-cross-repo-integration.md)) |
 
 ## The Ecosystem
 
-This engine is part of the **poqpoq** open metaverse platform:
+Black Box Scripter is part of the **Black Box** creative suite for the **poqpoq** open metaverse:
 
 - **[poqpoq World](https://github.com/increasinglyHuman/poqpoq-world)** — AI-first metaverse (Babylon.js)
 - **[Black Box Legacy](https://github.com/increasinglyHuman/blackbox-legacy)** — OAR → GLB converter with LSL script sidecars

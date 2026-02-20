@@ -1,10 +1,10 @@
-# poqpoq Script Engine
+# Black Box Scripter
 
 ## Project Overview
 
-A modular scripting engine for poqpoq World that brings TypeScript-based scripting to the open metaverse, with backward compatibility for LSL/OSSL scripts from Second Life and OpenSimulator.
+The scripting SDK for the open metaverse. Black Box Scripter provides a TypeScript-based scripting framework for poqpoq World, with backward compatibility for LSL/OSSL scripts from Second Life and OpenSimulator.
 
-**Architecture Decision Record:** See `docs/adr/ADR-001-language-and-runtime-architecture.md`
+**Architecture Decision Records:** See `docs/adr/`
 
 ## Repository Structure
 
@@ -15,10 +15,12 @@ src/
   runtime/        Script sandbox (Web Worker + SES + AST transform)
   transpiler/     LSL → TypeScript transpiler
   editor/         Monaco-based script editor
+  integration/    Host integration layer (protocol, bundle, adapter)
 tests/            Test suites (Vitest)
 examples/         Example scripts (TypeScript + LSL originals)
 docs/
   adr/            Architecture Decision Records
+  team-briefs/    Cross-repo integration briefs
 ```
 
 ## Tech Stack
@@ -68,7 +70,7 @@ When mapping LSL functions to the World API:
 
 ### Related Projects
 - **poqpoq World:** `/home/p0qp0q/blackbox/World/` — The 3D engine this scripting system targets
-- **Legacy OAR Converter:** `/home/p0qp0q/blackbox/Legacy/` — Converts OpenSim archives to GLB + script sidecars
+- **Black Box Legacy:** `/home/p0qp0q/blackbox/Legacy/` — Converts OpenSim archives to GLB + script sidecars
 - **OpenSim Source:** `/home/p0qp0q/opensim/` — Reference OpenSimulator installation (source only, not built)
 
 ## Quick Start

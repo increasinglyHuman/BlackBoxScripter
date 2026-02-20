@@ -1,7 +1,7 @@
 {
-  "name": "poqpoq-script-engine",
+  "name": "blackbox-scripter",
   "version": "0.5.0",
-  "description": "Modular scripting engine for poqpoq World — TypeScript-based with LSL/OSSL backward compatibility",
+  "description": "Black Box Scripter — TypeScript scripting SDK for the open metaverse, with LSL/OSSL backward compatibility",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,15 +12,18 @@
     "transpile": "tsx src/transpiler/cli.ts"
   },
   "keywords": [
+    "blackbox",
+    "scripter",
+    "metaverse",
+    "scripting",
     "lsl",
     "ossl",
     "opensim",
-    "secondlife",
-    "metaverse",
-    "scripting",
     "poqpoq",
     "babylonjs",
-    "virtual-world"
+    "virtual-world",
+    "typescript",
+    "sdk"
   ],
   "author": "Allen Partridge <allen@poqpoq.com>",
   "license": "MIT",
@@ -34,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/increasinglyHuman/lsl-ossl-poqpoq.git"
+    "url": "https://github.com/increasinglyHuman/BlackBoxScripter.git"
   },
   "dependencies": {
     "acorn": "^8.16.0",

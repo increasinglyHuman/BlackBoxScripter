@@ -1,5 +1,5 @@
 /**
- * poqpoq Script Engine — Type exports
+ * Black Box Scripter — Type exports
  */
 
 export { Vector3, Quaternion, Color3 } from "./math.js";

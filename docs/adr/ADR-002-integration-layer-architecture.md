@@ -10,7 +10,7 @@
 
 ## Context
 
-Phases 1-4 of the poqpoq Script Engine are complete:
+Phases 1-4 of the Black Box Scripter are complete:
 
 | Phase | What | Tests |
 |-------|------|-------|
@@ -25,7 +25,7 @@ Phase 5 connects this engine to the live Babylon.js 3D world — poqpoq World. T
 
 ### Constraints
 
-1. **Separate codebases**: The engine lives in `lsl-ossl-poqpoq/`, the 3D world lives in `World/`. They have different build pipelines, dependencies, and release cadences.
+1. **Separate codebases**: The engine lives in `BlackBoxScripter/`, the 3D world lives in `World/`. They have different build pipelines, dependencies, and release cadences.
 
 2. **No Babylon.js dependency**: This repo must never import Babylon.js. It defines scripting abstractions (Vector3, WorldObject, events) — the host implements them against Babylon's actual types.
 
@@ -166,7 +166,7 @@ The `CommandRouter` bridges the gap between the runtime's untyped `method: strin
 ## Package Structure
 
 ```
-poqpoq-script-engine/
+blackbox-scripter/
 ├── dist/
 │   ├── types/          → Core types (always available)
 │   ├── api/            → World API interfaces
@@ -194,11 +194,11 @@ poqpoq-script-engine/
 **Usage from World:**
 ```typescript
 // Always loaded (~50KB runtime + protocol types)
-import { ScriptHostAdapter } from "poqpoq-script-engine/integration";
-import type { ScriptCommand, ScriptEvent } from "poqpoq-script-engine/protocol";
+import { ScriptHostAdapter } from "blackbox-scripter/integration";
+import type { ScriptCommand, ScriptEvent } from "blackbox-scripter/protocol";
 
 // Lazy-loaded (~4MB) only when creator opens editor
-const { Shell } = await import("poqpoq-script-engine/editor");
+const { Shell } = await import("blackbox-scripter/editor");
 ```
 
 ---

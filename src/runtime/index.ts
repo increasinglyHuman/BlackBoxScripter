@@ -1,5 +1,5 @@
 /**
- * poqpoq Script Engine — Runtime exports
+ * Black Box Scripter — Runtime exports
  */
 
 // Core types
