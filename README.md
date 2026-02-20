@@ -16,7 +16,7 @@
   <img src="https://img.shields.io/badge/editor-Monaco-007ACC?logo=visualstudiocode&logoColor=white" alt="Monaco Editor" />
   <img src="https://img.shields.io/badge/compat-LSL_%2F_OSSL-8B5CF6" alt="LSL/OSSL Compatible" />
   <img src="https://img.shields.io/badge/license-MIT-22C55E" alt="MIT License" />
-  <img src="https://img.shields.io/badge/phase-3_of_6-F59E0B" alt="Phase 3 of 6" />
+  <img src="https://img.shields.io/badge/phase-4_of_6-F59E0B" alt="Phase 4 of 6" />
 </p>
 
 <p align="center">
@@ -119,7 +119,7 @@ docs/adr/       Architecture Decision Records
 | 1. Foundation | **Done** | Core types, World API, LSL mapping table |
 | 2. Runtime | **Done** | Worker pool, SES sandbox, event dispatch, timers, inter-script messaging |
 | 3. Transpiler | **Done** | LSL lexer/parser/codegen, type tracker, function resolver |
-| 4. Editor | Planned | Monaco + IntelliSense + dual TS/LSL mode |
+| 4. Editor | **Done** | Monaco + IntelliSense + dual TS/LSL mode + full UI shell |
 | 5. Integration | Planned | Babylon.js wiring, OAR import, NEXUS sync |
 | 6. Polish | Planned | Example library, docs, migration guide |
 

@@ -26,48 +26,7 @@ import {
 } from "./types.js";
 import { tokenize } from "./lexer.js";
 import { ParserError, type SourceLocation } from "./errors.js";
-
-/** Known LSL event names */
-const LSL_EVENTS = new Set([
-  "state_entry",
-  "state_exit",
-  "touch_start",
-  "touch",
-  "touch_end",
-  "timer",
-  "listen",
-  "link_message",
-  "collision_start",
-  "collision",
-  "collision_end",
-  "sensor",
-  "no_sensor",
-  "on_rez",
-  "changed",
-  "run_time_permissions",
-  "money",
-  "attach",
-  "control",
-  "dataserver",
-  "http_response",
-  "http_request",
-  "at_target",
-  "not_at_target",
-  "at_rot_target",
-  "not_at_rot_target",
-  "moving_start",
-  "moving_end",
-  "land_collision_start",
-  "land_collision",
-  "land_collision_end",
-  "email",
-  "remote_data",
-  "object_rez",
-  "experience_permissions",
-  "experience_permissions_denied",
-  "path_update",
-  "transaction_result",
-]);
+import { LSL_EVENTS } from "./event-map.js";
 
 export class Parser {
   private tokens: Token[] = [];

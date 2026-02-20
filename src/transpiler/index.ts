@@ -17,6 +17,7 @@ export { generate, CodeGenerator } from "./codegen.js";
 export { TypeTracker } from "./type-tracker.js";
 export { FunctionResolver } from "./function-resolver.js";
 export { LSL_CONSTANTS, CONSTANTS_REQUIRING_IMPORTS } from "./constants.js";
+export { LSL_EVENTS, EVENT_NAME_MAP, DETECTED_EVENTS, EVENT_PARAMS } from "./event-map.js";
 
 // Types
 export type {

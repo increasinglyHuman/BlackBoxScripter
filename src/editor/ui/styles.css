@@ -1,0 +1,51 @@
+/**
+ * poqpoq Script Editor — Global Styles
+ *
+ * CSS custom properties are set dynamically by theme.ts.
+ * This file provides the baseline layout and scrollbar styling.
+ */
+
+/* Scrollbar styling (Webkit) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--poqpoq-surface-hover, #3e3e3e);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--poqpoq-text-muted, #808080);
+}
+
+/* Scrollbar styling (Firefox) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--poqpoq-surface-hover, #3e3e3e) transparent;
+}
+
+/* Font loading — Montserrat + Space Mono match the BlackBox sister apps */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Montserrat:wght@900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* Button reset */
+button {
+  font-family: inherit;
+}
+
+/* Selection color */
+::selection {
+  background: var(--poqpoq-accent, #007acc);
+  color: #fff;
+}
+
+/* Focus outline */
+input:focus {
+  outline: 1px solid var(--poqpoq-accent, #007acc);
+  outline-offset: -1px;
+}

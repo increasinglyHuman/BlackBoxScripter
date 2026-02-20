@@ -24,47 +24,7 @@ import type { Diagnostic } from "./errors.js";
 import { TypeTracker } from "./type-tracker.js";
 import { FunctionResolver } from "./function-resolver.js";
 import { LSL_CONSTANTS, CONSTANTS_REQUIRING_IMPORTS } from "./constants.js";
-
-// ============================================================
-// Event name mapping
-// ============================================================
-
-const EVENT_NAME_MAP: Record<string, string> = {
-  state_entry: "onStateEntry",
-  state_exit: "onStateExit",
-  touch_start: "onTouchStart",
-  touch: "onTouch",
-  touch_end: "onTouchEnd",
-  collision_start: "onCollisionStart",
-  collision: "onCollision",
-  collision_end: "onCollisionEnd",
-  land_collision_start: "onLandCollisionStart",
-  listen: "onListen",
-  timer: "onTimer",
-  sensor: "onSensor",
-  no_sensor: "onNoSensor",
-  on_rez: "onRez",
-  changed: "onChanged",
-  attach: "onAttach",
-  money: "onMoney",
-  control: "onControl",
-  run_time_permissions: "onPermissions",
-  link_message: "onLinkMessage",
-  dataserver: "onDataserver",
-  http_response: "onHttpResponse",
-  moving_start: "onMovingStart",
-  moving_end: "onMovingEnd",
-  at_target: "onAtTarget",
-  not_at_target: "onNotAtTarget",
-  at_rot_target: "onAtRotTarget",
-};
-
-/** Events that can use llDetected* functions */
-const DETECTED_EVENTS = new Set([
-  "touch_start", "touch", "touch_end",
-  "collision_start", "collision", "collision_end",
-  "sensor",
-]);
+import { EVENT_NAME_MAP, DETECTED_EVENTS } from "./event-map.js";
 
 // ============================================================
 // Type mapping

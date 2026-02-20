@@ -32,10 +32,12 @@
     "acorn": "^8.16.0",
     "acorn-walk": "^8.3.5",
     "astring": "^1.9.0",
+    "monaco-editor": "^0.55.1",
     "ses": "^1.14.0"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
+    "vite": "^7.3.1",
     "vitest": "^4.0.18"
   }
 }
