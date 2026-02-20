@@ -3,13 +3,17 @@
   "version": "0.5.0",
   "description": "Black Box Scripter — TypeScript scripting SDK for the open metaverse, with LSL/OSSL backward compatibility",
   "type": "module",
+  "bin": {
+    "blackbox-scripter": "./dist/transpiler/cli.js"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "test": "vitest",
     "test:run": "vitest run",
     "lint": "tsc --noEmit",
-    "transpile": "tsx src/transpiler/cli.ts"
+    "transpile": "tsx src/transpiler/cli.ts transpile",
+    "bundle": "tsx src/transpiler/cli.ts bundle"
   },
   "keywords": [
     "blackbox",
