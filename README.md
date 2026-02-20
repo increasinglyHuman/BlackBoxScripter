@@ -16,7 +16,7 @@
   <img src="https://img.shields.io/badge/editor-Monaco-007ACC?logo=visualstudiocode&logoColor=white" alt="Monaco Editor" />
   <img src="https://img.shields.io/badge/compat-LSL_%2F_OSSL-8B5CF6" alt="LSL/OSSL Compatible" />
   <img src="https://img.shields.io/badge/license-MIT-22C55E" alt="MIT License" />
-  <img src="https://img.shields.io/badge/phase-2_of_6-F59E0B" alt="Phase 2 of 6" />
+  <img src="https://img.shields.io/badge/phase-3_of_6-F59E0B" alt="Phase 3 of 6" />
 </p>
 
 <p align="center">
@@ -97,7 +97,7 @@ Babylon.js renders changes in the 3D world
 
 **Security**: Three-layer sandbox (Web Worker isolation → SES frozen intrinsics → AST loop protection). Scripts cannot access the DOM, make unauthorized network requests, or affect other scripts. Same philosophy as LSL, modern implementation.
 
-**LSL Compatibility**: An LSL-to-TypeScript transpiler converts imported scripts automatically. The 120+ function [mapping table](src/api/ll-map.ts) covers `ll*` and `os*` functions.
+**LSL Compatibility**: An LSL-to-TypeScript transpiler converts imported scripts automatically. The 179-function [mapping table](src/api/ll-map.ts) covers `ll*` and `os*` functions, with type-aware operator overloading for vectors and rotations.
 
 ## Project Structure
 
@@ -118,7 +118,7 @@ docs/adr/       Architecture Decision Records
 |-------|--------|------|
 | 1. Foundation | **Done** | Core types, World API, LSL mapping table |
 | 2. Runtime | **Done** | Worker pool, SES sandbox, event dispatch, timers, inter-script messaging |
-| 3. Transpiler | Next | LSL lexer/parser/codegen |
+| 3. Transpiler | **Done** | LSL lexer/parser/codegen, type tracker, function resolver |
 | 4. Editor | Planned | Monaco + IntelliSense + dual TS/LSL mode |
 | 5. Integration | Planned | Babylon.js wiring, OAR import, NEXUS sync |
 | 6. Polish | Planned | Example library, docs, migration guide |
