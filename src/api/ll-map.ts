@@ -176,6 +176,14 @@ export const LSL_FUNCTION_MAP: FunctionMapping[] = [
   { lsl: "osTeleportAgent", api: "await agent.teleport(destination)", category: "ossl-agent", status: "mapped" },
   { lsl: "osSetDynamicTextureURL", api: "this.object.setTexture(url, face)", category: "ossl-texture", status: "partial" },
   { lsl: "osParseJSON", api: "JSON.parse(str)", category: "ossl-data", status: "mapped", notes: "Native JSON support" },
+
+  // === Media on a Prim ===
+  { lsl: "llSetPrimMediaParams", api: "this.object.setMediaParams(face, rules)", category: "media", status: "mapped", notes: "Rules list uses PRIM_MEDIA_* constants" },
+  { lsl: "llClearPrimMedia", api: "this.object.clearMedia(face)", category: "media", status: "mapped" },
+  { lsl: "llGetPrimMediaParams", api: "this.object.getMediaParams(face, rules)", category: "media", status: "mapped", notes: "Returns list of parameter values" },
+  { lsl: "llSetLinkMedia", api: "this.object.getLink(link)?.setMediaParams(face, rules)", category: "media", status: "mapped" },
+  { lsl: "llClearLinkMedia", api: "this.object.getLink(link)?.clearMedia(face)", category: "media", status: "mapped" },
+  { lsl: "llGetLinkMedia", api: "this.object.getLink(link)?.getMediaParams(face, rules)", category: "media", status: "mapped" },
 ];
 
 /** Quick lookup by LSL function name */

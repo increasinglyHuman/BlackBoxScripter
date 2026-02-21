@@ -209,6 +209,19 @@ export class CommandRouter {
       case "object.setMediaVolume":
         return { type: "setMediaVolume", objectId: containerId, volume: args[0] as number };
 
+      // Media rules-list API (LSL compat — PRIM_MEDIA_* constants)
+      case "object.setMediaParams":
+        return {
+          type: "setMedia",
+          objectId: containerId,
+          face: args[0] as number,
+          mediaType: "video",
+          url: "",
+          options: { rules: args[1] as unknown[] },
+        };
+      case "object.clearMedia":
+        return { type: "stopMedia", objectId: containerId, face: (args[0] as number) ?? -1 };
+
       // === Sensors ===
       case "world.sensor":
         return {

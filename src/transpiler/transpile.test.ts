@@ -267,4 +267,42 @@ describe("Transpile end-to-end", () => {
       expect(typeof generate).toBe("function");
     });
   });
+
+  describe("Media corpus — OutWorldz MOAP scripts", () => {
+    it("transpiles MOAP.lsl (music on a prim)", () => {
+      const source = readFixture("outworldz/MOAP", "MOAP.lsl");
+      const result = transpile(source, { className: "MOAPScript" });
+      expect(result.success).toBe(true);
+      expect(result.code).toContain("setMediaParams");
+    });
+
+    it("transpiles Chalkboard/Script.lsl (shared media)", () => {
+      const source = readFixture("outworldz/Chalkboard", "Script.lsl");
+      const result = transpile(source, { className: "ChalkboardScript" });
+      expect(result.success).toBe(true);
+      expect(result.code).toContain("setMediaParams");
+      expect(result.code).toContain("clearMedia");
+    });
+
+    it("transpiles llSetPrimMediaParams_1.lsl", () => {
+      const source = readFixture("outworldz/llSetPrimMediaParams", "llSetPrimMediaParams_1.lsl");
+      const result = transpile(source, { className: "MediaParamsScript" });
+      expect(result.success).toBe(true);
+      expect(result.code).toContain("setMediaParams");
+    });
+
+    it("resolves PRIM_MEDIA_* constants to numeric values", () => {
+      const source = `
+default {
+  state_entry() {
+    llSetPrimMediaParams(0, [PRIM_MEDIA_CURRENT_URL, "http://example.com", PRIM_MEDIA_AUTO_PLAY, TRUE]);
+  }
+}`;
+      const result = transpile(source, { className: "ConstTest" });
+      expect(result.success).toBe(true);
+      // PRIM_MEDIA_CURRENT_URL = 2, PRIM_MEDIA_AUTO_PLAY = 4
+      expect(result.code).toContain("2");
+      expect(result.code).toContain("4");
+    });
+  });
 });

@@ -141,6 +141,16 @@ export interface WorldObject {
   /** Get all linked prims */
   getLinks(): WorldObject[];
 
+  // === Media on Prim ===
+  /** Set media on a prim face using PRIM_MEDIA_* rule list — maps to llSetPrimMediaParams */
+  setMediaParams(face: number, params: unknown[]): number;
+
+  /** Clear media from a prim face — maps to llClearPrimMedia */
+  clearMedia(face?: number): number;
+
+  /** Get media parameters from a prim face — maps to llGetPrimMediaParams */
+  getMediaParams(face: number, params: unknown[]): unknown[];
+
   // === Interaction ===
   /** Set click action type */
   setClickAction(action: "none" | "touch" | "sit" | "buy" | "pay" | "open"): void;

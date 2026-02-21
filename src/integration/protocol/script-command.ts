@@ -262,6 +262,8 @@ export interface SetMediaCommand {
     readonly loop?: boolean;
     readonly width?: number;
     readonly height?: number;
+    /** LSL PRIM_MEDIA_* rules list (from llSetPrimMediaParams) */
+    readonly rules?: readonly unknown[];
   };
 }
 

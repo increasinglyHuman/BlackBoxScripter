@@ -337,4 +337,39 @@ describe("FunctionResolver", () => {
       expect(FunctionResolver.ASYNC_FUNCTIONS.has("osGetNotecard")).toBe(true);
     });
   });
+
+  describe("media functions", () => {
+    it("resolves llSetPrimMediaParams to this.object.setMediaParams", () => {
+      const result = resolver.resolve("llSetPrimMediaParams", ["0", "[2, url]"]);
+      expect(result.template).toBe("this.object.setMediaParams(0, [2, url])");
+      expect(result.category).toBe("media");
+    });
+
+    it("resolves llClearPrimMedia to this.object.clearMedia", () => {
+      const result = resolver.resolve("llClearPrimMedia", ["face"]);
+      expect(result.template).toBe("this.object.clearMedia(face)");
+      expect(result.category).toBe("media");
+    });
+
+    it("resolves llGetPrimMediaParams to this.object.getMediaParams", () => {
+      const result = resolver.resolve("llGetPrimMediaParams", ["0", "[2]"]);
+      expect(result.template).toBe("this.object.getMediaParams(0, [2])");
+      expect(result.category).toBe("media");
+    });
+
+    it("resolves llSetLinkMedia to link-level setMediaParams", () => {
+      const result = resolver.resolve("llSetLinkMedia", ["link", "0", "rules"]);
+      expect(result.template).toBe("this.object.getLink(link)?.setMediaParams(0, rules)");
+    });
+
+    it("resolves llClearLinkMedia to link-level clearMedia", () => {
+      const result = resolver.resolve("llClearLinkMedia", ["link", "0"]);
+      expect(result.template).toBe("this.object.getLink(link)?.clearMedia(0)");
+    });
+
+    it("resolves llGetLinkMedia to link-level getMediaParams", () => {
+      const result = resolver.resolve("llGetLinkMedia", ["link", "0", "rules"]);
+      expect(result.template).toBe("this.object.getLink(link)?.getMediaParams(0, rules)");
+    });
+  });
 });

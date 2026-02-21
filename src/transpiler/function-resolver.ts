@@ -609,6 +609,61 @@ const SPECIAL_HANDLERS: Record<string, (args: string[]) => ResolvedFunction> = {
     category: "effects",
   }),
 
+  // --- Media on a Prim ---
+  llSetPrimMediaParams: (args) => ({
+    kind: "method",
+    template: `this.object.setMediaParams(${args[0]}, ${args[1]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "llSetPrimMediaParams",
+    category: "media",
+  }),
+
+  llClearPrimMedia: (args) => ({
+    kind: "method",
+    template: `this.object.clearMedia(${args[0]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "llClearPrimMedia",
+    category: "media",
+  }),
+
+  llGetPrimMediaParams: (args) => ({
+    kind: "method",
+    template: `this.object.getMediaParams(${args[0]}, ${args[1]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "llGetPrimMediaParams",
+    category: "media",
+  }),
+
+  llSetLinkMedia: (args) => ({
+    kind: "method",
+    template: `this.object.getLink(${args[0]})?.setMediaParams(${args[1]}, ${args[2]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "llSetLinkMedia",
+    category: "media",
+  }),
+
+  llClearLinkMedia: (args) => ({
+    kind: "method",
+    template: `this.object.getLink(${args[0]})?.clearMedia(${args[1]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "llClearLinkMedia",
+    category: "media",
+  }),
+
+  llGetLinkMedia: (args) => ({
+    kind: "method",
+    template: `this.object.getLink(${args[0]})?.getMediaParams(${args[1]}, ${args[2]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "llGetLinkMedia",
+    category: "media",
+  }),
+
   // --- Sound ---
   llPlaySound: (args) => ({
     kind: "method",

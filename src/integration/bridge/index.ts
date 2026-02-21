@@ -9,6 +9,10 @@
 export { ReferenceBabylonBridge } from "./reference-bridge.js";
 export { ReferenceEventForwarder } from "./event-forwarder.js";
 export type { EventDispatchFn } from "./event-forwarder.js";
+export { ReferenceMediaSurface } from "./media-surface.js";
+export type { MediaElementFactory, VideoElementLike, IframeElementLike, MediaSurfaceConfig } from "./media-surface.js";
+export { MediaPolicy } from "./media-policy.js";
+export type { MediaPolicyConfig } from "./media-policy.js";
 
 // Engine structural interfaces (for advanced consumers writing custom bridges)
 export type {

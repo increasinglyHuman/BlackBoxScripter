@@ -307,6 +307,14 @@ const BUILTIN_RETURN_TYPES: Record<string, LSLType> = {
   osGetNotecard: "string",
   osTeleportAgent: "void",
   osSetDynamicTextureURL: "void",
+
+  // Media on a Prim
+  llSetPrimMediaParams: "integer",
+  llClearPrimMedia: "integer",
+  llGetPrimMediaParams: "list",
+  llSetLinkMedia: "integer",
+  llClearLinkMedia: "integer",
+  llGetLinkMedia: "list",
   osParseJSON: "string",
   osSetTerrainHeight: "void",
   osTerrainFlush: "void",

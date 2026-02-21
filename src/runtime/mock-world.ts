@@ -178,6 +178,20 @@ export class MockWorldObject implements WorldObject {
     this.log("raycast", direction, distance);
     return null;
   }
+
+  // === Media on Prim ===
+  setMediaParams(face: number, params: unknown[]): number {
+    this.log("setMediaParams", face, params);
+    return 0;
+  }
+  clearMedia(face?: number): number {
+    this.log("clearMedia", face);
+    return 0;
+  }
+  getMediaParams(face: number, params: unknown[]): unknown[] {
+    this.log("getMediaParams", face, params);
+    return [];
+  }
 }
 
 // === Mock Agent ===

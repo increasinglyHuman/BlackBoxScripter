@@ -51,5 +51,5 @@ export type {
 } from "./host/index.js";
 
 // Bridge — Reference implementations for host integration
-export { ReferenceBabylonBridge, ReferenceEventForwarder } from "./bridge/index.js";
-export type { HostSystems, SceneLike, MeshLike, EventDispatchFn } from "./bridge/index.js";
+export { ReferenceBabylonBridge, ReferenceEventForwarder, ReferenceMediaSurface, MediaPolicy } from "./bridge/index.js";
+export type { HostSystems, SceneLike, MeshLike, EventDispatchFn, MediaElementFactory, MediaPolicyConfig } from "./bridge/index.js";
