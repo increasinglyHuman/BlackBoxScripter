@@ -368,6 +368,15 @@ export const LSL_CONSTANTS: Record<string, string> = {
   TYPE_ROTATION: "6",
   TYPE_INVALID: "0",
 
+  // === NPC Flags (OSSL) ===
+  OS_NPC_CREATOR_OWNED: "1",
+  OS_NPC_SENSE_AS_AGENT: "2",
+  OS_NPC_NO_FLY: "3",
+  OS_NPC_NOT_OWNED: "4",
+  OS_NPC_RUNNING: "5",
+  OS_NPC_LAND_AT_TARGET: "6",
+  OS_NPC_FLY: "7",
+
   // === Land Pass / Parcel ===
   PARCEL_MEDIA_COMMAND_STOP: "0",
   PARCEL_MEDIA_COMMAND_PAUSE: "1",

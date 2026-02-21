@@ -323,6 +323,80 @@ describe("FunctionResolver", () => {
     });
   });
 
+  describe("NPC Phase 7C functions", () => {
+    it("resolves osNpcGetPos to this.world.npc.getPosition", () => {
+      const result = resolver.resolve("osNpcGetPos", ["npcId"]);
+      expect(result.template).toBe("this.world.npc.getPosition(npcId)");
+      expect(result.needsAwait).toBe(false);
+    });
+
+    it("resolves osNpcMoveToTarget as async moveTo", () => {
+      const result = resolver.resolve("osNpcMoveToTarget", ["npcId", "pos", "options"]);
+      expect(result.template).toBe("await this.world.npc.moveTo(npcId, pos, options)");
+      expect(result.needsAwait).toBe(true);
+    });
+
+    it("resolves osNpcStopMoveToTarget to stopMove", () => {
+      const result = resolver.resolve("osNpcStopMoveToTarget", ["npcId"]);
+      expect(result.template).toBe("this.world.npc.stopMove(npcId)");
+    });
+
+    it("resolves osNpcGetRot to getRotation", () => {
+      const result = resolver.resolve("osNpcGetRot", ["npcId"]);
+      expect(result.template).toBe("this.world.npc.getRotation(npcId)");
+    });
+
+    it("resolves osNpcSetRot to setRotation", () => {
+      const result = resolver.resolve("osNpcSetRot", ["npcId", "rot"]);
+      expect(result.template).toBe("this.world.npc.setRotation(npcId, rot)");
+    });
+
+    it("resolves osNpcWhisper to whisper", () => {
+      const result = resolver.resolve("osNpcWhisper", ["npcId", "0", '"msg"']);
+      expect(result.template).toBe('this.world.npc.whisper(npcId, 0, "msg")');
+    });
+
+    it("resolves osNpcShout to shout", () => {
+      const result = resolver.resolve("osNpcShout", ["npcId", "0", '"msg"']);
+      expect(result.template).toBe('this.world.npc.shout(npcId, 0, "msg")');
+    });
+
+    it("resolves osNpcSit to sit", () => {
+      const result = resolver.resolve("osNpcSit", ["npcId", "targetId"]);
+      expect(result.template).toBe("this.world.npc.sit(npcId, targetId)");
+    });
+
+    it("resolves osNpcStand to stand", () => {
+      const result = resolver.resolve("osNpcStand", ["npcId"]);
+      expect(result.template).toBe("this.world.npc.stand(npcId)");
+    });
+
+    it("resolves osNpcPlayAnimation to playAnimation", () => {
+      const result = resolver.resolve("osNpcPlayAnimation", ["npcId", '"wave"']);
+      expect(result.template).toBe('this.world.npc.playAnimation(npcId, "wave")');
+    });
+
+    it("resolves osNpcStopAnimation to stopAnimation", () => {
+      const result = resolver.resolve("osNpcStopAnimation", ["npcId", '"wave"']);
+      expect(result.template).toBe('this.world.npc.stopAnimation(npcId, "wave")');
+    });
+
+    it("resolves osNpcTouch to touch", () => {
+      const result = resolver.resolve("osNpcTouch", ["npcId", "objId"]);
+      expect(result.template).toBe("this.world.npc.touch(npcId, objId)");
+    });
+
+    it("resolves osNpcLoadAppearance to loadAppearance", () => {
+      const result = resolver.resolve("osNpcLoadAppearance", ["npcId", '"warrior"']);
+      expect(result.template).toBe('this.world.npc.loadAppearance(npcId, "warrior")');
+    });
+
+    it("resolves osNpcSaveAppearance to saveAppearance", () => {
+      const result = resolver.resolve("osNpcSaveAppearance", ["npcId", '"snapshot"']);
+      expect(result.template).toBe('this.world.npc.saveAppearance(npcId, "snapshot")');
+    });
+  });
+
   describe("async function set", () => {
     it("should contain llSleep", () => {
       expect(FunctionResolver.ASYNC_FUNCTIONS.has("llSleep")).toBe(true);
@@ -335,6 +409,10 @@ describe("FunctionResolver", () => {
     it("should contain OSSL async functions", () => {
       expect(FunctionResolver.ASYNC_FUNCTIONS.has("osNpcCreate")).toBe(true);
       expect(FunctionResolver.ASYNC_FUNCTIONS.has("osGetNotecard")).toBe(true);
+    });
+
+    it("should contain osNpcMoveToTarget", () => {
+      expect(FunctionResolver.ASYNC_FUNCTIONS.has("osNpcMoveToTarget")).toBe(true);
     });
   });
 

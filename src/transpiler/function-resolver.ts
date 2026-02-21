@@ -804,6 +804,133 @@ const SPECIAL_HANDLERS: Record<string, (args: string[]) => ResolvedFunction> = {
     category: "ossl-npc",
   }),
 
+  // --- NPC Phase 7C additions ---
+  osNpcGetPos: (args) => ({
+    kind: "special",
+    template: `this.world.npc.getPosition(${args[0]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "osNpcGetPos",
+    category: "ossl-npc",
+  }),
+
+  osNpcMoveToTarget: (args) => ({
+    kind: "special",
+    template: `await this.world.npc.moveTo(${args.join(", ")})`,
+    needsAwait: true,
+    needsAsync: true,
+    lslName: "osNpcMoveToTarget",
+    category: "ossl-npc",
+  }),
+
+  osNpcStopMoveToTarget: (args) => ({
+    kind: "special",
+    template: `this.world.npc.stopMove(${args[0]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "osNpcStopMoveToTarget",
+    category: "ossl-npc",
+  }),
+
+  osNpcGetRot: (args) => ({
+    kind: "special",
+    template: `this.world.npc.getRotation(${args[0]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "osNpcGetRot",
+    category: "ossl-npc",
+  }),
+
+  osNpcSetRot: (args) => ({
+    kind: "special",
+    template: `this.world.npc.setRotation(${args[0]}, ${args[1]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "osNpcSetRot",
+    category: "ossl-npc",
+  }),
+
+  osNpcWhisper: (args) => ({
+    kind: "special",
+    template: `this.world.npc.whisper(${args.join(", ")})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "osNpcWhisper",
+    category: "ossl-npc",
+  }),
+
+  osNpcShout: (args) => ({
+    kind: "special",
+    template: `this.world.npc.shout(${args.join(", ")})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "osNpcShout",
+    category: "ossl-npc",
+  }),
+
+  osNpcSit: (args) => ({
+    kind: "special",
+    template: `this.world.npc.sit(${args[0]}, ${args[1]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "osNpcSit",
+    category: "ossl-npc",
+  }),
+
+  osNpcStand: (args) => ({
+    kind: "special",
+    template: `this.world.npc.stand(${args[0]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "osNpcStand",
+    category: "ossl-npc",
+  }),
+
+  osNpcPlayAnimation: (args) => ({
+    kind: "special",
+    template: `this.world.npc.playAnimation(${args[0]}, ${args[1]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "osNpcPlayAnimation",
+    category: "ossl-npc",
+  }),
+
+  osNpcStopAnimation: (args) => ({
+    kind: "special",
+    template: `this.world.npc.stopAnimation(${args[0]}, ${args[1]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "osNpcStopAnimation",
+    category: "ossl-npc",
+  }),
+
+  osNpcTouch: (args) => ({
+    kind: "special",
+    template: `this.world.npc.touch(${args[0]}, ${args[1]})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "osNpcTouch",
+    category: "ossl-npc",
+  }),
+
+  osNpcLoadAppearance: (args) => ({
+    kind: "special",
+    template: `this.world.npc.loadAppearance(${args.join(", ")})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "osNpcLoadAppearance",
+    category: "ossl-npc",
+  }),
+
+  osNpcSaveAppearance: (args) => ({
+    kind: "special",
+    template: `this.world.npc.saveAppearance(${args.join(", ")})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "osNpcSaveAppearance",
+    category: "ossl-npc",
+  }),
+
   osGetNotecard: (args) => ({
     kind: "special",
     template: `await this.world.storage.get(${args[0]})`,
@@ -927,6 +1054,7 @@ export class FunctionResolver {
     "osNpcCreate",
     "osNpcRemove",
     "osNpcMoveTo",
+    "osNpcMoveToTarget",
     "osGetNotecard",
   ]);
 }

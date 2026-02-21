@@ -350,6 +350,95 @@ export interface NpcWanderCommand {
   readonly radius: number;
 }
 
+// === NPC Phase 7C Commands ===
+
+export interface NpcWhisperCommand {
+  readonly type: "npcWhisper";
+  readonly npcId: string;
+  readonly message: string;
+  readonly channel: number;
+}
+
+export interface NpcShoutCommand {
+  readonly type: "npcShout";
+  readonly npcId: string;
+  readonly message: string;
+  readonly channel: number;
+}
+
+export interface NpcSitCommand {
+  readonly type: "npcSit";
+  readonly npcId: string;
+  readonly targetId: string;
+}
+
+export interface NpcStandCommand {
+  readonly type: "npcStand";
+  readonly npcId: string;
+}
+
+export interface NpcSetRotationCommand {
+  readonly type: "npcSetRotation";
+  readonly npcId: string;
+  readonly rotation: Quat;
+}
+
+export interface NpcGetPositionCommand {
+  readonly type: "npcGetPosition";
+  readonly npcId: string;
+}
+
+export interface NpcGetRotationCommand {
+  readonly type: "npcGetRotation";
+  readonly npcId: string;
+}
+
+export interface NpcTouchCommand {
+  readonly type: "npcTouch";
+  readonly npcId: string;
+  readonly targetId: string;
+}
+
+export interface NpcLoadAppearanceCommand {
+  readonly type: "npcLoadAppearance";
+  readonly npcId: string;
+  readonly appearance: string;
+}
+
+export interface NpcStopMoveCommand {
+  readonly type: "npcStopMove";
+  readonly npcId: string;
+}
+
+// === Steering Behaviors ===
+
+/** Declarative steering behavior configuration (discriminated union). */
+export type SteeringBehaviorConfig =
+  | { readonly behavior: "seek"; readonly target: Vec3; readonly weight?: number }
+  | { readonly behavior: "flee"; readonly target: Vec3; readonly panicDistance?: number; readonly weight?: number }
+  | { readonly behavior: "arrive"; readonly target: Vec3; readonly slowingRadius?: number; readonly weight?: number }
+  | { readonly behavior: "pursue"; readonly targetId: string; readonly weight?: number }
+  | { readonly behavior: "evade"; readonly targetId: string; readonly panicDistance?: number; readonly weight?: number }
+  | { readonly behavior: "wander"; readonly radius?: number; readonly distance?: number; readonly jitter?: number; readonly weight?: number }
+  | { readonly behavior: "separation"; readonly distance?: number; readonly weight?: number }
+  | { readonly behavior: "cohesion"; readonly distance?: number; readonly weight?: number }
+  | { readonly behavior: "alignment"; readonly distance?: number; readonly weight?: number }
+  | { readonly behavior: "obstacleAvoidance"; readonly feelerLength?: number; readonly weight?: number }
+  | { readonly behavior: "tether"; readonly anchor: Vec3; readonly radius: number; readonly weight?: number };
+
+export interface NpcSetSteeringCommand {
+  readonly type: "npcSetSteering";
+  readonly npcId: string;
+  readonly behaviors: readonly SteeringBehaviorConfig[];
+  readonly maxSpeed?: number;
+  readonly maxForce?: number;
+}
+
+export interface NpcClearSteeringCommand {
+  readonly type: "npcClearSteering";
+  readonly npcId: string;
+}
+
 // === Discriminated Union ===
 
 export type ScriptCommand =
@@ -408,7 +497,21 @@ export type ScriptCommand =
   | NpcLookAtCommand
   | NpcFollowCommand
   | NpcPatrolCommand
-  | NpcWanderCommand;
+  | NpcWanderCommand
+  // NPC Phase 7C
+  | NpcWhisperCommand
+  | NpcShoutCommand
+  | NpcSitCommand
+  | NpcStandCommand
+  | NpcSetRotationCommand
+  | NpcGetPositionCommand
+  | NpcGetRotationCommand
+  | NpcTouchCommand
+  | NpcLoadAppearanceCommand
+  | NpcStopMoveCommand
+  // Steering
+  | NpcSetSteeringCommand
+  | NpcClearSteeringCommand;
 
 // === Envelope (adds routing metadata) ===
 

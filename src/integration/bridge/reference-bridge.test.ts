@@ -300,6 +300,143 @@ describe("ReferenceBabylonBridge", () => {
     });
   });
 
+  describe("NPC extended commands", () => {
+    function createFullNpcMock() {
+      return {
+        createNPC: vi.fn(), removeNPC: vi.fn(), moveNPC: vi.fn(),
+        sayNPC: vi.fn(), playAnimation: vi.fn(), stopAnimation: vi.fn(),
+        lookAt: vi.fn(), follow: vi.fn(), patrol: vi.fn(), wander: vi.fn(),
+        whisperNPC: vi.fn(), shoutNPC: vi.fn(),
+        sit: vi.fn(), stand: vi.fn(),
+        setRotation: vi.fn(),
+        getPosition: vi.fn().mockReturnValue({ x: 1, y: 2, z: 3 }),
+        getRotation: vi.fn().mockReturnValue({ x: 0, y: 0, z: 0, w: 1 }),
+        touchObject: vi.fn(), loadAppearance: vi.fn(), stopMove: vi.fn(),
+        setSteering: vi.fn(), clearSteering: vi.fn(),
+        setAppearance: vi.fn(),
+      };
+    }
+
+    it("npcLookAt delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      bridge.handle(envelope({ type: "npcLookAt", npcId: "npc-1", position: { x: 5, y: 0, z: 5 } }));
+      expect(npc.lookAt).toHaveBeenCalledWith("npc-1", { x: 5, y: 0, z: 5 });
+    });
+
+    it("npcFollow delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      bridge.handle(envelope({ type: "npcFollow", npcId: "npc-1", targetId: "agent-1", distance: 3 }));
+      expect(npc.follow).toHaveBeenCalledWith("npc-1", "agent-1", 3);
+    });
+
+    it("npcPatrol delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      const wps = [{ x: 0, y: 0, z: 0 }, { x: 10, y: 0, z: 10 }];
+      bridge.handle(envelope({ type: "npcPatrol", npcId: "npc-1", waypoints: wps, loop: true }));
+      expect(npc.patrol).toHaveBeenCalledWith("npc-1", wps, true);
+    });
+
+    it("npcWander delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      bridge.handle(envelope({ type: "npcWander", npcId: "npc-1", center: { x: 5, y: 0, z: 5 }, radius: 10 }));
+      expect(npc.wander).toHaveBeenCalledWith("npc-1", { x: 5, y: 0, z: 5 }, 10);
+    });
+
+    it("npcWhisper delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      bridge.handle(envelope({ type: "npcWhisper", npcId: "npc-1", message: "Psst", channel: 5 }));
+      expect(npc.whisperNPC).toHaveBeenCalledWith("npc-1", "Psst", 5);
+    });
+
+    it("npcShout delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      bridge.handle(envelope({ type: "npcShout", npcId: "npc-1", message: "HEY!", channel: 0 }));
+      expect(npc.shoutNPC).toHaveBeenCalledWith("npc-1", "HEY!", 0);
+    });
+
+    it("npcSit delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      bridge.handle(envelope({ type: "npcSit", npcId: "npc-1", targetId: "chair-1" }));
+      expect(npc.sit).toHaveBeenCalledWith("npc-1", "chair-1");
+    });
+
+    it("npcStand delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      bridge.handle(envelope({ type: "npcStand", npcId: "npc-1" }));
+      expect(npc.stand).toHaveBeenCalledWith("npc-1");
+    });
+
+    it("npcSetRotation delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      bridge.handle(envelope({ type: "npcSetRotation", npcId: "npc-1", rotation: { x: 0, y: 0.7, z: 0, s: 0.7 } }));
+      expect(npc.setRotation).toHaveBeenCalledWith("npc-1", { x: 0, y: 0.7, z: 0, s: 0.7 });
+    });
+
+    it("npcGetPosition returns position from NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      const result = bridge.handle(envelope({ type: "npcGetPosition", npcId: "npc-1" }));
+      expect(npc.getPosition).toHaveBeenCalledWith("npc-1");
+      expect(result).toEqual({ x: 1, y: 2, z: 3 });
+    });
+
+    it("npcGetRotation returns rotation from NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      const result = bridge.handle(envelope({ type: "npcGetRotation", npcId: "npc-1" }));
+      expect(npc.getRotation).toHaveBeenCalledWith("npc-1");
+      expect(result).toEqual({ x: 0, y: 0, z: 0, w: 1 });
+    });
+
+    it("npcTouch delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      bridge.handle(envelope({ type: "npcTouch", npcId: "npc-1", targetId: "button-1" }));
+      expect(npc.touchObject).toHaveBeenCalledWith("npc-1", "button-1");
+    });
+
+    it("npcLoadAppearance delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      bridge.handle(envelope({ type: "npcLoadAppearance", npcId: "npc-1", appearance: "warrior" }));
+      expect(npc.loadAppearance).toHaveBeenCalledWith("npc-1", "warrior");
+    });
+
+    it("npcStopMove delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      bridge.handle(envelope({ type: "npcStopMove", npcId: "npc-1" }));
+      expect(npc.stopMove).toHaveBeenCalledWith("npc-1");
+    });
+
+    it("npcSetSteering delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      const behaviors = [
+        { behavior: "wander", weight: 1.0, radius: 5 },
+        { behavior: "tether", weight: 2.0, anchor: { x: 0, y: 0, z: 0 }, radius: 15 },
+      ];
+      bridge.handle(envelope({ type: "npcSetSteering", npcId: "npc-1", behaviors, maxSpeed: 3, maxForce: 5 }));
+      expect(npc.setSteering).toHaveBeenCalledWith("npc-1", behaviors, 3, 5);
+    });
+
+    it("npcClearSteering delegates to NPC manager", () => {
+      const npc = createFullNpcMock();
+      const bridge = new ReferenceBabylonBridge(createMockScene(), { npc });
+      bridge.handle(envelope({ type: "npcClearSteering", npcId: "npc-1" }));
+      expect(npc.clearSteering).toHaveBeenCalledWith("npc-1");
+    });
+  });
+
   describe("Media commands", () => {
     it("setMedia delegates to media system", () => {
       const scene = createMockScene([]);

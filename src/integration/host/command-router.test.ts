@@ -313,6 +313,159 @@ describe("CommandRouter", () => {
     });
   });
 
+  describe("NPC extended commands", () => {
+    it("routes world.npcLookAt", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcLookAt", ["npc-1", { x: 5, y: 0, z: 5 }]);
+      expect(received[0].type).toBe("npcLookAt");
+    });
+
+    it("routes world.npcFollow with default distance", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcFollow", ["npc-1", "agent-1"]);
+      expect(received[0].type).toBe("npcFollow");
+      if (received[0].type === "npcFollow") {
+        expect(received[0].distance).toBe(2.0);
+      }
+    });
+
+    it("routes world.npcPatrol with default loop", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      const wps = [{ x: 0, y: 0, z: 0 }, { x: 10, y: 0, z: 10 }];
+      await router.resolve("script-1", "world.npcPatrol", ["npc-1", wps]);
+      expect(received[0].type).toBe("npcPatrol");
+      if (received[0].type === "npcPatrol") {
+        expect(received[0].loop).toBe(true);
+      }
+    });
+
+    it("routes world.npcWander", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcWander", ["npc-1", { x: 5, y: 0, z: 5 }, 10]);
+      expect(received[0].type).toBe("npcWander");
+    });
+  });
+
+  describe("NPC Phase 7C commands", () => {
+    it("routes world.npcWhisper", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcWhisper", ["npc-1", "Psst"]);
+      expect(received[0].type).toBe("npcWhisper");
+      if (received[0].type === "npcWhisper") {
+        expect(received[0].channel).toBe(0);
+      }
+    });
+
+    it("routes world.npcShout", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcShout", ["npc-1", "HEY!", 5]);
+      expect(received[0].type).toBe("npcShout");
+      if (received[0].type === "npcShout") {
+        expect(received[0].channel).toBe(5);
+      }
+    });
+
+    it("routes world.npcSit", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcSit", ["npc-1", "chair-1"]);
+      expect(received[0].type).toBe("npcSit");
+    });
+
+    it("routes world.npcStand", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcStand", ["npc-1"]);
+      expect(received[0].type).toBe("npcStand");
+    });
+
+    it("routes world.npcSetRotation", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcSetRotation", ["npc-1", { x: 0, y: 0.7, z: 0, s: 0.7 }]);
+      expect(received[0].type).toBe("npcSetRotation");
+    });
+
+    it("routes world.npcGetPosition", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcGetPosition", ["npc-1"]);
+      expect(received[0].type).toBe("npcGetPosition");
+    });
+
+    it("routes world.npcGetRotation", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcGetRotation", ["npc-1"]);
+      expect(received[0].type).toBe("npcGetRotation");
+    });
+
+    it("routes world.npcTouch", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcTouch", ["npc-1", "button-1"]);
+      expect(received[0].type).toBe("npcTouch");
+    });
+
+    it("routes world.npcLoadAppearance", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcLoadAppearance", ["npc-1", "warrior"]);
+      expect(received[0].type).toBe("npcLoadAppearance");
+    });
+
+    it("routes world.npcStopMove", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcStopMove", ["npc-1"]);
+      expect(received[0].type).toBe("npcStopMove");
+    });
+
+    it("routes world.npcSetSteering", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      const behaviors = [
+        { behavior: "wander", weight: 1.0 },
+        { behavior: "tether", weight: 2.0, anchor: { x: 0, y: 0, z: 0 }, radius: 15 },
+      ];
+      await router.resolve("script-1", "world.npcSetSteering", ["npc-1", behaviors, 5, 10]);
+      expect(received[0].type).toBe("npcSetSteering");
+      if (received[0].type === "npcSetSteering") {
+        expect(received[0].behaviors).toHaveLength(2);
+        expect(received[0].maxSpeed).toBe(5);
+      }
+    });
+
+    it("routes world.npcClearSteering", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.npcClearSteering", ["npc-1"]);
+      expect(received[0].type).toBe("npcClearSteering");
+    });
+  });
+
   describe("HTTP and permissions", () => {
     it("routes world.httpRequest", async () => {
       const router = createRouter();

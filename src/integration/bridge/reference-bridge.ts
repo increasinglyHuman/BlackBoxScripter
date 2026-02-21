@@ -158,6 +158,35 @@ export class ReferenceBabylonBridge {
       case "npcWander":
         return this.systems.npc?.wander?.(cmd.npcId, cmd.center, cmd.radius);
 
+      // === NPC Phase 7C ===
+      case "npcWhisper":
+        return this.systems.npc?.whisperNPC?.(cmd.npcId, cmd.message, cmd.channel);
+      case "npcShout":
+        return this.systems.npc?.shoutNPC?.(cmd.npcId, cmd.message, cmd.channel);
+      case "npcSit":
+        return this.systems.npc?.sit?.(cmd.npcId, cmd.targetId);
+      case "npcStand":
+        return this.systems.npc?.stand?.(cmd.npcId);
+      case "npcSetRotation":
+        // Protocol Quat uses { s } (LSL convention), engine QuatLike uses { w }
+        return this.systems.npc?.setRotation?.(cmd.npcId, { x: cmd.rotation.x, y: cmd.rotation.y, z: cmd.rotation.z, w: cmd.rotation.s });
+      case "npcGetPosition":
+        return this.systems.npc?.getPosition?.(cmd.npcId);
+      case "npcGetRotation":
+        return this.systems.npc?.getRotation?.(cmd.npcId);
+      case "npcTouch":
+        return this.systems.npc?.touchObject?.(cmd.npcId, cmd.targetId);
+      case "npcLoadAppearance":
+        return this.systems.npc?.loadAppearance?.(cmd.npcId, cmd.appearance);
+      case "npcStopMove":
+        return this.systems.npc?.stopMove?.(cmd.npcId);
+
+      // === Steering ===
+      case "npcSetSteering":
+        return this.systems.npc?.setSteering?.(cmd.npcId, cmd.behaviors as unknown[], cmd.maxSpeed, cmd.maxForce);
+      case "npcClearSteering":
+        return this.systems.npc?.clearSteering?.(cmd.npcId);
+
       default:
         return undefined;
     }

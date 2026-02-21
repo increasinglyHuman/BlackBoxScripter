@@ -16,14 +16,15 @@
   <img src="https://img.shields.io/badge/editor-Monaco-007ACC?logo=visualstudiocode&logoColor=white" alt="Monaco Editor" />
   <img src="https://img.shields.io/badge/compat-LSL_%2F_OSSL-8B5CF6" alt="LSL/OSSL Compatible" />
   <img src="https://img.shields.io/badge/license-MIT-22C55E" alt="MIT License" />
-  <img src="https://img.shields.io/badge/phase-5_of_6-F59E0B" alt="Phase 5 of 6" />
+  <img src="https://img.shields.io/badge/tests-713_passing-22C55E" alt="713 Tests Passing" />
+  <img src="https://img.shields.io/badge/phase-7C_complete-3B82F6" alt="Phase 7C Complete" />
 </p>
 
 <p align="center">
   <a href="LICENSE">MIT License</a> ·
   <a href="docs/adr/ADR-001-language-and-runtime-architecture.md">Architecture (ADR-001)</a> ·
   <a href="docs/adr/ADR-002-integration-layer-architecture.md">Integration (ADR-002)</a> ·
-  <a href="docs/adr/ADR-003-phase-6-and-cross-repo-integration.md">Phase 6 & Cross-Repo (ADR-003)</a> ·
+  <a href="docs/adr/ADR-004-scripter-owns-world-scripting.md">Bridge Ownership (ADR-004)</a> ·
   <a href="https://poqpoq.com/world/">poqpoq World</a>
 </p>
 
@@ -51,6 +52,7 @@ We keep what works. We fix what doesn't.
 | Script-per-prim | Scripts control any objects |
 | Flat `ll*` function soup | Structured `world.npc.*`, `world.http.*` APIs |
 | No error handling | try/catch, async/await |
+| `osNpcMoveTo` (point-to-point) | Craig Reynolds steering: wander, pursue, boids, tethered aggro |
 | Text editor in a 3D viewer | Monaco (VS Code) in the browser |
 
 ## Quick Look
@@ -99,7 +101,9 @@ Babylon.js renders changes in the 3D world
 
 **Security**: Three-layer sandbox (Web Worker isolation → SES frozen intrinsics → AST loop protection). Scripts cannot access the DOM, make unauthorized network requests, or affect other scripts. Same philosophy as LSL, modern implementation.
 
-**LSL Compatibility**: An LSL-to-TypeScript transpiler converts imported scripts automatically. The 179-function [mapping table](src/api/ll-map.ts) covers `ll*` and `os*` functions, with type-aware operator overloading for vectors and rotations.
+**LSL Compatibility**: An LSL-to-TypeScript transpiler converts imported scripts automatically. The 179-function [mapping table](src/api/ll-map.ts) covers `ll*` and `os*` functions, with type-aware operator overloading for vectors and rotations. Validated against 1,921 real-world scripts (94.1% corpus rate).
+
+**Steering Behaviors**: A pure-math [Craig Reynolds steering library](src/integration/bridge/steering.ts) ships with the SDK — seek, flee, arrive, pursue, evade, wander, obstacle avoidance, separation, cohesion, alignment, and tether. Composable via weighted blending for behaviors like tethered wander guards, boids flocking, and chase agents with leash ranges.
 
 ## Project Structure
 
@@ -107,13 +111,17 @@ Babylon.js renders changes in the 3D world
 src/
   types/        Core type definitions (Vector3, WorldScript, Agent, NPC, etc.)
   api/          World API interfaces and LSL function mapping
-  runtime/      Script sandbox (Web Worker + SES) [Phase 2]
-  transpiler/   LSL → TypeScript transpiler [Phase 3]
-  editor/       Monaco-based script editor [Phase 4]
-  integration/  Host integration layer [Phase 5]
-    protocol/   ScriptCommand + ScriptEvent typed contracts
+  runtime/      Script sandbox (Web Worker + SES)
+  transpiler/   LSL → TypeScript transpiler (preprocessor, tokenizer, parser, codegen)
+  editor/       Monaco-based script editor
+  integration/  Host integration layer (ADR-004)
+    protocol/   ScriptCommand (59 types) + ScriptEvent typed contracts
     bundle/     OAR bundle parser + batch transpiler
-    host/       ScriptHostAdapter + CommandRouter
+    host/       ScriptHostAdapter + CommandRouter (44 method→command mappings)
+    bridge/     Reference BabylonBridge, event forwarder, media surface
+      steering.ts       Craig Reynolds steering behaviors (pure math)
+      npc-behavior.ts   Patrol/wander/follow/guard FSMs
+      media-surface.ts  Media-on-a-prim (video, iframe, WebRTC)
 examples/       Example scripts
 docs/adr/       Architecture Decision Records
 ```
@@ -127,7 +135,11 @@ docs/adr/       Architecture Decision Records
 | 3. Transpiler | **Done** | LSL lexer/parser/codegen, type tracker, function resolver |
 | 4. Editor | **Done** | Monaco + IntelliSense + dual TS/LSL mode + full UI shell |
 | 5. Integration | **Done** | Protocol types, OAR bundle pipeline, host adapter ([ADR-002](docs/adr/ADR-002-integration-layer-architecture.md)) |
-| 6. Polish | **Next** | Example library, docs, migration guide, cross-repo wiring ([ADR-003](docs/adr/ADR-003-phase-6-and-cross-repo-integration.md)) |
+| 6. Polish | **Done** | Cross-repo wiring, CLI tools, production deployment |
+| 7A. Bridge | **Done** | Reference BabylonBridge, event forwarder, structural typing ([ADR-004](docs/adr/ADR-004-scripter-owns-world-scripting.md)) |
+| 7B. Media | **Done** | Media-on-a-prim: video, iframe, WebRTC surfaces with CSP policy |
+| 7C. NPC & Steering | **Done** | Craig Reynolds steering behaviors, NPC behavior FSMs, 14 osNpc* handlers |
+| 7D. Physics & Sensors | **Next** | Sensor sweeps, `llCastRay`, rez/die lifecycle, terrain queries |
 
 ## The Ecosystem
 

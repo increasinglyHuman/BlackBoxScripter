@@ -1,6 +1,6 @@
 # ADR-004: Scripter Takes Over World Scripting Internals
 
-**Status:** Proposed
+**Status:** Accepted (Phase 7A–7C implemented)
 **Date:** 2026-02-20
 **Authors:** Allen Partridge (p0qp0q), Claude
 **Supersedes:** ADR-003 World-side bridge section
@@ -14,13 +14,16 @@ Phases 1–6 of the Black Box Scripter are complete. The scripting pipeline is p
 
 | Asset | Status |
 |-------|--------|
-| Transpiler | 94.1% corpus rate (1,807/1,921 OutWorldz scripts), 496 tests |
+| Transpiler | 94.1% corpus rate (1,807/1,921 OutWorldz scripts) |
 | Runtime | SES sandbox, worker pool, timers, events, link messages |
-| Protocol | 47 command types, 26 event types, typed envelopes |
-| Command Router | 32 implemented method→command mappings |
+| Protocol | 59 command types, 26 event types, typed envelopes |
+| Command Router | 44 implemented method→command mappings |
 | Bundle Pipeline | Parse → transpile → load, end-to-end tested |
 | Editor | Monaco + IntelliSense, live dual-mode, deployed at poqpoq.com/scripter/ |
 | CLI | `transpile` + `bundle` commands, deployed on server |
+| Bridge | Reference BabylonBridge (59 commands), event forwarder, media surface |
+| Steering | Craig Reynolds behaviors (11 algorithms), NPC FSMs (4 runners) |
+| Tests | 713 passing across 23 test files |
 
 Meanwhile, the World team's scripting integration is functional but incomplete:
 
@@ -47,11 +50,12 @@ Scripter defines narrow interfaces (`SceneLike`, `MeshLike`, `MaterialLike`, etc
 ```
 src/integration/bridge/
   engine-types.ts              Structural interfaces for Babylon.js objects
-  reference-bridge.ts          Full command handler (~55 commands)
+  reference-bridge.ts          Full command handler (59 commands)
   event-forwarder.ts           Babylon.js observables → ScriptEvent
   media-surface.ts             Media-on-a-prim: video, iframe, WebRTC
   media-policy.ts              URL allowlist + CSP validation
-  npc-behavior.ts              Patrol/wander/follow state machines
+  steering.ts                  Craig Reynolds steering behaviors (pure math)
+  npc-behavior.ts              Patrol/wander/follow/guard FSMs + presets
   index.ts                     Barrel exports
 ```
 
@@ -75,43 +79,96 @@ forwarder.start();
 
 ## Implementation Phases
 
-### Phase 7A: Bridge Foundation
+### Phase 7A: Bridge Foundation — COMPLETE
 
-Ship reference BabylonBridge from Scripter. Complete all 14 World stubs.
+> Commit `7d5cf21` · 56 tests
 
-**New files:**
+Shipped reference BabylonBridge from Scripter. Completed all 14 World stubs.
+
+**Files delivered:**
 
 | File | Purpose |
 |------|---------|
-| `engine-types.ts` | `SceneLike`, `MeshLike`, `MaterialLike`, `AnimationGroupLike`, `PhysicsSystemLike`, `AudioEngineLike`, `NPCManagerLike`, `ChatSystemLike` |
-| `reference-bridge.ts` | Full command handler — all 32 current + new commands |
+| `engine-types.ts` | `SceneLike`, `MeshLike`, `MaterialLike`, `AnimationGroupLike`, `PhysicsSystemLike`, `AudioEngineLike`, `NPCManagerLike`, `ChatSystemLike`, `HostSystems` |
+| `reference-bridge.ts` | Full command handler — structural typing, zero Babylon.js imports |
 | `event-forwarder.ts` | Touch/collision/rez → ScriptEventEnvelope |
 | `index.ts` | Barrel exports |
-| Tests for each |
 
 **14 stubs completed:** `setTexture`, `setText`, `setGlow`, `instantMessage`, `dialog`, `applyForce`, `applyImpulse`, `setPhysics`, `npcRemove`, `npcMoveTo`, `npcSay`, `npcPlayAnimation`, `npcStopAnimation`, `requestPermissions`
 
 **New protocol extensions:** `setMedia`, `stopMedia`, `setMediaVolume`, `sensor`, `sensorRepeat`, `sensorRemove`, `rezObject`, `die`, `npcLookAt`, `npcFollow`, `npcPatrol`, `npcWander`
 
-### Phase 7B: Media-on-a-Prim
+### Phase 7B: Media-on-a-Prim — COMPLETE
 
-Embed web content on mesh faces — the 2026 hygiene feature.
+> Commit `85eecf8` · 48 tests
+
+Embedded web content on mesh faces — video, iframe, and WebRTC streaming.
 
 **Two-layer approach:**
 1. **Video/stream** (YouTube, Twitch, OBS): `VideoTexture` mapping `<video>` to mesh UV
 2. **Rich HTML** (Discord widgets, web pages): Screen-space `<iframe>` overlay with hit-test anchoring
 
+**Files delivered:**
+
+| File | Purpose |
+|------|---------|
+| `media-surface.ts` | Factory-injected DOM surface manager (video + iframe) |
+| `media-policy.ts` | URL allowlist + CSP validation per media type |
+
 Scripts call `this.object.setMedia(face, url, options)`. Bridge handles lifecycle, cleanup, and CSP.
 
-### Phase 7C: NPC & Animation Expansion
+### Phase 7C: NPC, Steering Behaviors & Animation Expansion — COMPLETE
 
-Full NPC lifecycle: pathfinding via navigation mesh, patrol waypoints, wander radius, follow agent. Animation blending with weights and priorities.
+> 113 tests (46 steering + 20 behavior + 18 bridge + 15 resolver + 14 router)
 
-### Phase 7D: Physics, Sensors, Remaining Systems
+Goes beyond LSL/OSSL's `osNpcMoveTo` point-to-point movement. Scripter now ships a **Craig Reynolds steering behavior library** as a first-class feature, giving creators composable autonomous movement.
+
+**Architecture: Pure Math + Declarative Protocol**
+
+Two layers solve the tick problem (steering needs per-frame evaluation, but the bridge is stateless):
+
+1. **`steering.ts`** — Pure math functions. Takes `Vec3Like` positions/velocities, returns `Vec3Like` force vectors. No state, no side effects, no engine dependency. World's NPCManager imports and calls per-frame.
+
+2. **`npc-behavior.ts`** — Behavior FSMs that compose steering via declarative protocol commands. Scripts configure behaviors; the host translates to per-frame force calculations.
+
+**11 steering behaviors:**
+
+| Behavior | Description |
+|----------|-------------|
+| `seek` | Full-speed toward target |
+| `flee` | Away from threat (with panic distance) |
+| `arrive` | Seek with deceleration |
+| `pursue` | Intercept moving target |
+| `evade` | Flee from predicted position |
+| `wander` | Smooth random movement (circle + jitter) |
+| `obstacleAvoidance` | Feeler-ray avoidance |
+| `separation` | Push away from neighbors |
+| `cohesion` | Pull toward neighbor center |
+| `alignment` | Match neighbor heading |
+| `tether` | Soft pull back to anchor zone |
+
+**4 behavior FSM runners:** PatrolRunner (waypoint sequencing with pause/animation/say), WanderRunner (tethered random movement), FollowRunner (maintain distance from target), GuardRunner (idle wander ↔ aggro pursuit with leash)
+
+**3 steering presets:** `tetheredWander`, `boids`, `chaseWithLeash`
+
+**12 new protocol commands:** `npcWhisper`, `npcShout`, `npcSit`, `npcStand`, `npcSetRotation`, `npcGetPosition`, `npcGetRotation`, `npcTouch`, `npcLoadAppearance`, `npcStopMove`, `npcSetSteering`, `npcClearSteering`
+
+**14 new osNpc\* function resolver entries:** `osNpcGetPos`, `osNpcMoveToTarget`, `osNpcStopMoveToTarget`, `osNpcGetRot`, `osNpcSetRot`, `osNpcWhisper`, `osNpcShout`, `osNpcSit`, `osNpcStand`, `osNpcPlayAnimation`, `osNpcStopAnimation`, `osNpcTouch`, `osNpcLoadAppearance`, `osNpcSaveAppearance`
+
+**Files delivered:**
+
+| File | Purpose |
+|------|---------|
+| `steering.ts` | 11 Reynolds behaviors + composition helpers (~250 LOC) |
+| `npc-behavior.ts` | 4 FSM runners + steering presets (~300 LOC) |
+| Protocol additions | `SteeringBehaviorConfig` union + 12 command types |
+| Engine types | `NPCManagerLike` extended with 12 optional methods |
+| Bridge/router | Dispatch + routing for all new commands |
+| Function resolver | 14 osNpc* SPECIAL_HANDLERS + OS_NPC_* constants |
+
+### Phase 7D: Physics, Sensors, Remaining Systems — NEXT
 
 Complete the gap: sensor sweeps (spatial queries + arc), `llCastRay` (raypick), rez/die lifecycle, terrain queries.
-
-**Phases 7B, 7C, 7D are independent** — can proceed in any order after 7A.
 
 ---
 
@@ -153,7 +210,8 @@ expect(mesh.position).toEqual({ x: 1, y: 2, z: 3 });
 - **World team freed** to focus on rendering, AI, UI, and multiplayer
 - **Browser-free testing** via structural interfaces — all bridge code testable in Vitest
 - **Media-on-a-prim** unlocks YouTube, Discord, OBS streaming in-world
-- **~210 new tests**, total approaching ~700
+- **Steering behaviors** give NPCs composable autonomous movement — a differentiator over LSL/OSSL
+- **~217 new tests** across phases 7A–7C, total 713
 
 ### Negative
 
@@ -168,15 +226,15 @@ expect(mesh.position).toEqual({ x: 1, y: 2, z: 3 });
 
 ---
 
-## Estimated Scope
+## Scope (Estimated → Actual)
 
-| Phase | New Files | ~New Lines | ~New Tests |
-|-------|-----------|-----------|------------|
-| 7A (Bridge) | 6 | 1,450 | 80 |
-| 7B (Media) | 4 | 690 | 40 |
-| 7C (NPC) | 2 | 550 | 50 |
-| 7D (Physics) | 0 | 400 | 40 |
-| **Total** | **12** | **~3,100** | **~210** |
+| Phase | New Files | ~New Lines | ~New Tests | Status |
+|-------|-----------|-----------|------------|--------|
+| 7A (Bridge) | 6 → 5 | 1,450 → ~1,200 | 80 → 56 | **DONE** `7d5cf21` |
+| 7B (Media) | 4 → 3 | 690 → ~600 | 40 → 48 | **DONE** `85eecf8` |
+| 7C (NPC + Steering) | 2 → 4 | 550 → ~750 | 50 → 113 | **DONE** |
+| 7D (Physics) | 0 | ~400 | ~40 | Next |
+| **Total** | **12** | **~2,950** | **~257** | |
 
 ---
 
@@ -184,9 +242,11 @@ expect(mesh.position).toEqual({ x: 1, y: 2, z: 3 });
 
 - [ADR-002: Integration Layer Architecture](ADR-002-integration-layer-architecture.md)
 - [ADR-003: Phase 6 & Cross-Repo Integration](ADR-003-phase-6-and-cross-repo-integration.md)
-- [Protocol types: script-command.ts](../../src/integration/protocol/script-command.ts) — single source of truth
-- [Command router: command-router.ts](../../src/integration/host/command-router.ts) — 32 current mappings
+- [Protocol types: script-command.ts](../../src/integration/protocol/script-command.ts) — 59 command types, single source of truth
+- [Command router: command-router.ts](../../src/integration/host/command-router.ts) — 44 method→command mappings
 - [Host adapter: script-host-adapter.ts](../../src/integration/host/script-host-adapter.ts) — orchestrator facade
+- [Steering behaviors: steering.ts](../../src/integration/bridge/steering.ts) — Craig Reynolds pure math library
+- [NPC behaviors: npc-behavior.ts](../../src/integration/bridge/npc-behavior.ts) — FSM runners (patrol/wander/follow/guard)
 
 ---
 

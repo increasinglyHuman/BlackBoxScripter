@@ -122,6 +122,17 @@ export interface NPCManagerLike {
   setAppearance?(npcId: string, appearance: string): void;
   sit?(npcId: string, targetId: string): void;
   stand?(npcId: string): void;
+  // Phase 7C additions
+  whisperNPC?(npcId: string, message: string, channel?: number): void;
+  shoutNPC?(npcId: string, message: string, channel?: number): void;
+  setRotation?(npcId: string, rotation: QuatLike): void;
+  getPosition?(npcId: string): Vec3Like | null;
+  getRotation?(npcId: string): QuatLike | null;
+  touchObject?(npcId: string, targetId: string): void;
+  loadAppearance?(npcId: string, appearance: string): void;
+  stopMove?(npcId: string): void;
+  setSteering?(npcId: string, behaviors: unknown[], maxSpeed?: number, maxForce?: number): void;
+  clearSteering?(npcId: string): void;
 }
 
 // === Chat / Communication ===

@@ -259,6 +259,40 @@ export class CommandRouter {
       case "world.npcWander":
         return { type: "npcWander", npcId: args[0] as string, center: args[1] as import("../protocol/script-command.js").Vec3, radius: args[2] as number };
 
+      // === NPC Phase 7C ===
+      case "world.npcWhisper":
+        return { type: "npcWhisper", npcId: args[0] as string, message: args[1] as string, channel: (args[2] as number) ?? 0 };
+      case "world.npcShout":
+        return { type: "npcShout", npcId: args[0] as string, message: args[1] as string, channel: (args[2] as number) ?? 0 };
+      case "world.npcSit":
+        return { type: "npcSit", npcId: args[0] as string, targetId: args[1] as string };
+      case "world.npcStand":
+        return { type: "npcStand", npcId: args[0] as string };
+      case "world.npcSetRotation":
+        return { type: "npcSetRotation", npcId: args[0] as string, rotation: args[1] as Quat };
+      case "world.npcGetPosition":
+        return { type: "npcGetPosition", npcId: args[0] as string };
+      case "world.npcGetRotation":
+        return { type: "npcGetRotation", npcId: args[0] as string };
+      case "world.npcTouch":
+        return { type: "npcTouch", npcId: args[0] as string, targetId: args[1] as string };
+      case "world.npcLoadAppearance":
+        return { type: "npcLoadAppearance", npcId: args[0] as string, appearance: args[1] as string };
+      case "world.npcStopMove":
+        return { type: "npcStopMove", npcId: args[0] as string };
+
+      // === Steering ===
+      case "world.npcSetSteering":
+        return {
+          type: "npcSetSteering",
+          npcId: args[0] as string,
+          behaviors: args[1] as import("../protocol/script-command.js").SteeringBehaviorConfig[],
+          maxSpeed: args[2] as number | undefined,
+          maxForce: args[3] as number | undefined,
+        };
+      case "world.npcClearSteering":
+        return { type: "npcClearSteering", npcId: args[0] as string };
+
       // === Built-in methods handled by ScriptManager ===
       // These return null → the caller skips them (handled upstream)
       case "world.setTimer":

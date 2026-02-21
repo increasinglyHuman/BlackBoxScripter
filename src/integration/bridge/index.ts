@@ -14,6 +14,17 @@ export type { MediaElementFactory, VideoElementLike, IframeElementLike, MediaSur
 export { MediaPolicy } from "./media-policy.js";
 export type { MediaPolicyConfig } from "./media-policy.js";
 
+// Steering behaviors (pure math, engine-independent)
+export {
+  seek, flee, arrive, pursue, evade, wander,
+  obstacleAvoidance, separation, cohesion, alignment, tether,
+  combineForces, truncate, magnitude, normalize,
+} from "./steering.js";
+
+// NPC behavior FSMs
+export { PatrolRunner, WanderRunner, FollowRunner, GuardRunner, SteeringPresets } from "./npc-behavior.js";
+export type { BehaviorState, BehaviorWaypoint } from "./npc-behavior.js";
+
 // Engine structural interfaces (for advanced consumers writing custom bridges)
 export type {
   SceneLike,
