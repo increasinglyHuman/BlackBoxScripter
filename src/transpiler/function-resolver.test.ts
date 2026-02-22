@@ -672,6 +672,39 @@ describe("FunctionResolver", () => {
     it("should contain llGetNumberOfNotecardLines", () => {
       expect(FunctionResolver.ASYNC_FUNCTIONS.has("llGetNumberOfNotecardLines")).toBe(true);
     });
+
+    it("should contain llTransferLindenDollars", () => {
+      expect(FunctionResolver.ASYNC_FUNCTIONS.has("llTransferLindenDollars")).toBe(true);
+    });
+  });
+
+  describe("economy / money functions", () => {
+    it("resolves llGiveMoney to this.world.giveMoney", () => {
+      const result = resolver.resolve("llGiveMoney", ['"target-key"', "100"]);
+      expect(result.template).toBe('this.world.giveMoney("target-key", 100)');
+      expect(result.category).toBe("economy");
+      expect(result.needsAwait).toBe(false);
+    });
+
+    it("resolves llTransferLindenDollars as async", () => {
+      const result = resolver.resolve("llTransferLindenDollars", ['"dest-key"', "500"]);
+      expect(result.template).toBe('await this.world.transferLindenDollars("dest-key", 500)');
+      expect(result.category).toBe("economy");
+      expect(result.needsAwait).toBe(true);
+      expect(result.needsAsync).toBe(true);
+    });
+
+    it("resolves llSetPayPrice to this.world.setPayPrice", () => {
+      const result = resolver.resolve("llSetPayPrice", ["PAY_DEFAULT", "[10, 25, 50, 100]"]);
+      expect(result.template).toBe("this.world.setPayPrice(PAY_DEFAULT, [10, 25, 50, 100])");
+      expect(result.category).toBe("economy");
+    });
+
+    it("resolves llGetBalance to this.world.getBalance", () => {
+      const result = resolver.resolve("llGetBalance", []);
+      expect(result.template).toBe("this.world.getBalance()");
+      expect(result.category).toBe("economy");
+    });
   });
 
   describe("media functions", () => {

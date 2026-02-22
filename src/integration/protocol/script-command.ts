@@ -205,6 +205,31 @@ export interface DetachCommand {
   readonly objectId: string;
 }
 
+// === Economy / Money Commands ===
+
+export interface GiveMoneyCommand {
+  readonly type: "giveMoney";
+  readonly targetId: string;
+  readonly amount: number;
+}
+
+export interface TransferLindenDollarsCommand {
+  readonly type: "transferLindenDollars";
+  readonly targetId: string;
+  readonly amount: number;
+}
+
+export interface SetPayPriceCommand {
+  readonly type: "setPayPrice";
+  readonly objectId: string;
+  readonly defaultPrice: number;
+  readonly buttons: readonly number[];
+}
+
+export interface GetBalanceCommand {
+  readonly type: "getBalance";
+}
+
 // === Effects Commands ===
 
 export interface PlaySoundCommand {
@@ -696,7 +721,12 @@ export type ScriptCommand =
   | GetNotecardLineCommand
   | GetNotecardLineCountCommand
   | AttachCommand
-  | DetachCommand;
+  | DetachCommand
+  // Economy / Money
+  | GiveMoneyCommand
+  | TransferLindenDollarsCommand
+  | SetPayPriceCommand
+  | GetBalanceCommand;
 
 // === Envelope (adds routing metadata) ===
 

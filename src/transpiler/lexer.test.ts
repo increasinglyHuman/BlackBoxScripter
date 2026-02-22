@@ -249,8 +249,11 @@ describe("LSL Lexer", () => {
       expect(tokens[0].type).toBe(TokenType.KW_Integer);
     });
 
-    it("should throw on unterminated multi-line comment", () => {
-      expect(() => tokenize("/* unterminated")).toThrow("Unterminated");
+    it("should tolerate unterminated multi-line comment at EOF", () => {
+      // LSL compilers accept unterminated block comments — treat as comment to EOF
+      const tokens = tokenize("integer x;\n/* unterminated");
+      expect(tokens[0].type).toBe(TokenType.KW_Integer);
+      expect(tokens.length).toBe(4); // integer, x, ;, EOF
     });
   });
 

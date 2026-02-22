@@ -1309,6 +1309,43 @@ const SPECIAL_HANDLERS: Record<string, (args: string[]) => ResolvedFunction> = {
     lslName: "llGetAttached",
     category: "agent",
   }),
+
+  // --- Money / Economy ---
+  llGiveMoney: (args) => ({
+    kind: "method",
+    template: `this.world.giveMoney(${args.join(", ")})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "llGiveMoney",
+    category: "economy",
+  }),
+
+  llTransferLindenDollars: (args) => ({
+    kind: "special",
+    template: `await this.world.transferLindenDollars(${args.join(", ")})`,
+    needsAwait: true,
+    needsAsync: true,
+    lslName: "llTransferLindenDollars",
+    category: "economy",
+  }),
+
+  llSetPayPrice: (args) => ({
+    kind: "method",
+    template: `this.world.setPayPrice(${args.join(", ")})`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "llSetPayPrice",
+    category: "economy",
+  }),
+
+  llGetBalance: () => ({
+    kind: "method",
+    template: `this.world.getBalance()`,
+    needsAwait: false,
+    needsAsync: false,
+    lslName: "llGetBalance",
+    category: "economy",
+  }),
 };
 
 // ============================================================
@@ -1419,5 +1456,6 @@ export class FunctionResolver {
     "osNpcMoveTo",
     "osNpcMoveToTarget",
     "osGetNotecard",
+    "llTransferLindenDollars",
   ]);
 }

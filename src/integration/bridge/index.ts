@@ -53,5 +53,6 @@ export type {
   InventorySystemLike,
   DialogSystemLike,
   AttachmentSystemLike,
+  EconomySystemLike,
   HostSystems,
 } from "./engine-types.js";

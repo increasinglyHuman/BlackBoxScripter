@@ -145,9 +145,8 @@ export class Lexer {
         continue;
       }
 
-      // Multi-line comment
+      // Multi-line comment — tolerate unterminated at EOF (LSL compilers accept this)
       if (ch === "/" && this.peek(1) === "*") {
-        const startLoc = this.loc();
         this.advance(); // /
         this.advance(); // *
         while (this.pos < this.source.length) {
@@ -155,9 +154,6 @@ export class Lexer {
             this.advance(); // *
             this.advance(); // /
             break;
-          }
-          if (this.pos >= this.source.length - 1) {
-            throw new LexerError("Unterminated multi-line comment", startLoc, this.source);
           }
           this.advance();
         }

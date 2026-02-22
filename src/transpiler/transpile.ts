@@ -20,6 +20,16 @@ import type { TranspileOptions, TranspileResult } from "./types.js";
 function preprocess(source: string): string {
   let s = source;
 
+  // Strip BOM (byte order mark) — common in Windows-edited files
+  if (s.charCodeAt(0) === 0xFEFF) {
+    s = s.slice(1);
+  }
+
+  // Strip null bytes and zero-width characters that corrupt UTF-8 files
+  // (BOM fragments, UTF-16 artifacts, zero-width spaces/joiners)
+  // eslint-disable-next-line no-control-regex
+  s = s.replace(/[\x00\uFFFD\u200B\u200C\u200D\uFEFF]/g, "");
+
   // Decode HTML entities (common in web-scraped scripts)
   if (s.includes("&lt;") || s.includes("&gt;") || s.includes("&amp;")) {
     s = s.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"');
@@ -39,6 +49,9 @@ function preprocess(source: string): string {
   // Strip decorative Unicode symbols that sometimes appear in LSL comments
   // but cause lexer errors when they leak outside comments (®, ©, ™, etc.)
   s = s.replace(/[\u00AE\u00A9\u2122]/g, "");
+
+  // Strip trailing backslash line continuations (C-style, not valid in LSL)
+  s = s.replace(/\\\r?\n/g, "\n");
 
   return s;
 }

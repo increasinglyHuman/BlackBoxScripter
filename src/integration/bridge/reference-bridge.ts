@@ -236,6 +236,16 @@ export class ReferenceBabylonBridge {
       case "detach":
         return this.systems.attachment?.detach(cmd.objectId);
 
+      // === Economy / Money ===
+      case "giveMoney":
+        return this.systems.economy?.giveMoney(cmd.targetId, cmd.amount);
+      case "transferLindenDollars":
+        return this.systems.economy?.transferLindenDollars(cmd.targetId, cmd.amount);
+      case "setPayPrice":
+        return this.systems.economy?.setPayPrice(cmd.objectId, cmd.defaultPrice, cmd.buttons);
+      case "getBalance":
+        return this.systems.economy?.getBalance() ?? 0;
+
       default:
         return undefined;
     }

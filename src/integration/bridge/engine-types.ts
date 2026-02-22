@@ -216,6 +216,15 @@ export interface AttachmentSystemLike {
   detach(objectId: string): void;
 }
 
+// === Economy / Money ===
+
+export interface EconomySystemLike {
+  giveMoney(targetId: string, amount: number): void;
+  transferLindenDollars(targetId: string, amount: number): string | Promise<string>;
+  setPayPrice(objectId: string, defaultPrice: number, buttons: readonly number[]): void;
+  getBalance(): number;
+}
+
 // === Media Surface ===
 
 export interface MediaSurfaceLike {
@@ -240,4 +249,5 @@ export interface HostSystems {
   inventory?: InventorySystemLike;
   dialog?: DialogSystemLike;
   attachment?: AttachmentSystemLike;
+  economy?: EconomySystemLike;
 }

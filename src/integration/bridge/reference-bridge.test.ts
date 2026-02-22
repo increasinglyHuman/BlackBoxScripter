@@ -763,6 +763,68 @@ describe("ReferenceBabylonBridge", () => {
     });
   });
 
+  describe("economy / money", () => {
+    function createEconomyMock() {
+      return {
+        giveMoney: vi.fn(),
+        transferLindenDollars: vi.fn().mockReturnValue("txn-001"),
+        setPayPrice: vi.fn(),
+        getBalance: vi.fn().mockReturnValue(1000),
+      };
+    }
+
+    it("giveMoney delegates to economy system", () => {
+      const scene = createMockScene([]);
+      const economy = createEconomyMock();
+      const bridge = new ReferenceBabylonBridge(scene, { economy } as unknown as HostSystems);
+
+      bridge.handle(envelope({ type: "giveMoney", targetId: "avatar-1", amount: 100 }));
+
+      expect(economy.giveMoney).toHaveBeenCalledWith("avatar-1", 100);
+    });
+
+    it("transferLindenDollars delegates to economy system", () => {
+      const scene = createMockScene([]);
+      const economy = createEconomyMock();
+      const bridge = new ReferenceBabylonBridge(scene, { economy } as unknown as HostSystems);
+
+      const result = bridge.handle(envelope({ type: "transferLindenDollars", targetId: "avatar-2", amount: 500 }));
+
+      expect(economy.transferLindenDollars).toHaveBeenCalledWith("avatar-2", 500);
+      expect(result).toBe("txn-001");
+    });
+
+    it("setPayPrice delegates to economy system", () => {
+      const scene = createMockScene([]);
+      const economy = createEconomyMock();
+      const bridge = new ReferenceBabylonBridge(scene, { economy } as unknown as HostSystems);
+
+      bridge.handle(envelope({ type: "setPayPrice", objectId: "obj-1", defaultPrice: -2, buttons: [10, 25, 50, 100] }));
+
+      expect(economy.setPayPrice).toHaveBeenCalledWith("obj-1", -2, [10, 25, 50, 100]);
+    });
+
+    it("getBalance returns value from economy system", () => {
+      const scene = createMockScene([]);
+      const economy = createEconomyMock();
+      const bridge = new ReferenceBabylonBridge(scene, { economy } as unknown as HostSystems);
+
+      const result = bridge.handle(envelope({ type: "getBalance" }));
+
+      expect(economy.getBalance).toHaveBeenCalled();
+      expect(result).toBe(1000);
+    });
+
+    it("getBalance returns 0 when economy system is not provided", () => {
+      const scene = createMockScene([]);
+      const bridge = new ReferenceBabylonBridge(scene, {});
+
+      const result = bridge.handle(envelope({ type: "getBalance" }));
+
+      expect(result).toBe(0);
+    });
+  });
+
   describe("unknown commands", () => {
     it("returns undefined for unknown command types", () => {
       const scene = createMockScene([]);

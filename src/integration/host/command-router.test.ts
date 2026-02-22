@@ -742,6 +742,53 @@ describe("CommandRouter", () => {
     });
   });
 
+  describe("economy / money", () => {
+    it("routes world.giveMoney", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.giveMoney", ["avatar-1", 100]);
+      expect(received[0].type).toBe("giveMoney");
+      if (received[0].type === "giveMoney") {
+        expect(received[0].targetId).toBe("avatar-1");
+        expect(received[0].amount).toBe(100);
+      }
+    });
+
+    it("routes world.transferLindenDollars", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.transferLindenDollars", ["avatar-2", 500]);
+      expect(received[0].type).toBe("transferLindenDollars");
+      if (received[0].type === "transferLindenDollars") {
+        expect(received[0].targetId).toBe("avatar-2");
+        expect(received[0].amount).toBe(500);
+      }
+    });
+
+    it("routes world.setPayPrice", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.setPayPrice", [-2, [10, 25, 50, 100]]);
+      expect(received[0].type).toBe("setPayPrice");
+      if (received[0].type === "setPayPrice") {
+        expect(received[0].objectId).toBe("container-A");
+        expect(received[0].defaultPrice).toBe(-2);
+        expect(received[0].buttons).toEqual([10, 25, 50, 100]);
+      }
+    });
+
+    it("routes world.getBalance", async () => {
+      const router = createRouter();
+      const received: ScriptCommand[] = [];
+      router.onCommand((env) => { received.push(env.command); });
+      await router.resolve("script-1", "world.getBalance", []);
+      expect(received[0].type).toBe("getBalance");
+    });
+  });
+
   describe("HTTP and permissions", () => {
     it("routes world.httpRequest", async () => {
       const router = createRouter();

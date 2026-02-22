@@ -211,6 +211,12 @@ export const LSL_FUNCTION_MAP: FunctionMapping[] = [
   { lsl: "llAttachToAvatarTemp", api: "this.world.attachToAvatarTemp(point)", category: "agent", status: "mapped" },
   { lsl: "llDetachFromAvatar", api: "this.world.detachFromAvatar()", category: "agent", status: "mapped" },
   { lsl: "llGetAttached", api: "this.object.getAttached()", category: "agent", status: "mapped" },
+
+  // === Economy / Money ===
+  { lsl: "llGiveMoney", api: "this.world.giveMoney(target, amount)", category: "economy", status: "mapped" },
+  { lsl: "llTransferLindenDollars", api: "await this.world.transferLindenDollars(target, amount)", category: "economy", status: "mapped", notes: "Async — returns transaction key, triggers transaction_result" },
+  { lsl: "llSetPayPrice", api: "this.world.setPayPrice(default, buttons)", category: "economy", status: "mapped" },
+  { lsl: "llGetBalance", api: "this.world.getBalance()", category: "economy", status: "mapped" },
 ];
 
 /** Quick lookup by LSL function name */

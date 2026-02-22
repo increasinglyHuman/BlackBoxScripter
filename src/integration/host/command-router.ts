@@ -345,6 +345,16 @@ export class CommandRouter {
       case "world.detachFromAvatar":
         return { type: "detach", objectId: containerId };
 
+      // === Economy / Money ===
+      case "world.giveMoney":
+        return { type: "giveMoney", targetId: args[0] as string, amount: args[1] as number };
+      case "world.transferLindenDollars":
+        return { type: "transferLindenDollars", targetId: args[0] as string, amount: args[1] as number };
+      case "world.setPayPrice":
+        return { type: "setPayPrice", objectId: containerId, defaultPrice: args[0] as number, buttons: args[1] as number[] };
+      case "world.getBalance":
+        return { type: "getBalance" };
+
       // === Built-in methods handled by ScriptManager ===
       // These return null → the caller skips them (handled upstream)
       case "world.setTimer":
