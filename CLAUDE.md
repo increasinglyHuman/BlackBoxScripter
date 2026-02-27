@@ -80,7 +80,22 @@ npm install
 npm run dev          # Start development server
 npm test             # Run tests
 npm run build        # Production build
+npm run docs         # Regenerate API reference docs from source data
 ```
+
+## Deployment
+
+The editor and docs site are deployed separately to `/var/www/scripter/` on production:
+
+```bash
+# Deploy editor (Vite build output) — DO NOT use --delete, it wipes docs/
+rsync -avz -e "ssh -i ~/.ssh/poqpoq-new.pem" dist-app/ ubuntu@poqpoq.com:/var/www/scripter/
+
+# Deploy docs site (static HTML + auto-generated reference pages)
+rsync -avz -e "ssh -i ~/.ssh/poqpoq-new.pem" docs/site/ ubuntu@poqpoq.com:/var/www/scripter/docs/
+```
+
+**Warning:** Never use `rsync --delete` on the editor deploy — the `docs/` subdirectory lives alongside the editor build output and would be wiped.
 
 ## Port Assignments
 

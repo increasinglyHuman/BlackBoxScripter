@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Black Box Scripter — Documentation</title>
+  <link rel="icon" type="image/svg+xml" href="images/poqpoq-favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/docs.css">
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <div class="full-width-layout">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="hero-bg" style="background-image: url('https://poqpoq.com/scripter/resources/scripterHeroImg.png');"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Black Box <span class="accent">Scripter</span></h1>
+        <p class="tagline">
+          LSL &rarr; TypeScript transpiler for the open metaverse.<br>
+          Paste a Second Life script. Get modern, type-safe code.
+        </p>
+        <div class="hero-actions">
+          <a href="getting-started.html" class="btn btn-primary">Get Started</a>
+          <a href="https://poqpoq.com/scripter/" class="btn btn-secondary" target="_blank">Launch Editor &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURE CARDS ===== -->
+    <section class="section">
+      <div class="card-grid">
+
+        <a href="reference/functions.html" class="feature-card" style="text-decoration:none;">
+          <div class="card-icon">&#402;</div>
+          <h3>Function Reference</h3>
+          <p>Every LSL function mapped to its poqpoq TypeScript equivalent. Auto-generated from the transpiler's source data &mdash; always current.</p>
+          <span class="card-link">Browse functions &rarr;</span>
+        </a>
+
+        <a href="reference/events.html" class="feature-card" style="text-decoration:none;">
+          <div class="card-icon">&#9889;</div>
+          <h3>Event Reference</h3>
+          <p>All 38 LSL events with their poqpoq handler names, parameter signatures, and detected-data capabilities.</p>
+          <span class="card-link">Browse events &rarr;</span>
+        </a>
+
+        <a href="reference/constants.html" class="feature-card" style="text-decoration:none;">
+          <div class="card-icon">#</div>
+          <h3>Constants Reference</h3>
+          <p>~400 LSL constants &mdash; permissions, attach points, particle flags, prim params &mdash; with their TypeScript equivalents.</p>
+          <span class="card-link">Browse constants &rarr;</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ===== QUICK START ===== -->
+    <section class="section">
+      <div class="quick-start">
+        <h2>Quick <span class="accent">Start</span></h2>
+        <p>Paste this LSL into the <a href="https://poqpoq.com/scripter/" target="_blank">editor</a> and hit Transpile:</p>
+        <pre><code>default
+{
+    state_entry()
+    {
+        llSay(0, "Hello from poqpoq!");
+    }
+
+    touch_start(integer num_detected)
+    {
+        llSay(0, "Touched by " + llDetectedName(0));
+    }
+}</code></pre>
+        <p>The transpiler produces:</p>
+        <pre><code>import { WorldScript } from "@poqpoq/sdk";
+
+export default class Script extends WorldScript {
+  onStateEntry(): void {
+    this.say(0, "Hello from poqpoq!");
+  }
+
+  onTouchStart(detected: DetectedInfo[]): void {
+    this.say(0, "Touched by " + detected[0].name);
+  }
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ===== ECOSYSTEM ===== -->
+    <section class="ecosystem-banner">
+      <h2>Part of the <span class="accent">BlackBox</span> Suite</h2>
+      <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 1.5rem;">
+        Scripter works alongside World, Animator, Skinner, Terraformer, and Landscaper
+        to build the open metaverse.
+      </p>
+      <div class="ecosystem-grid">
+        <div class="ecosystem-item">
+          <a href="https://poqpoq.com/world/" target="_blank">World</a>
+          <span>3D Engine</span>
+        </div>
+        <div class="ecosystem-item">
+          <a href="https://poqpoq.com/animator/" target="_blank">Animator</a>
+          <span>Animation</span>
+        </div>
+        <div class="ecosystem-item">
+          <a href="https://poqpoq.com/skinner/" target="_blank">Skinner</a>
+          <span>Vertex Weights</span>
+        </div>
+        <div class="ecosystem-item">
+          <a href="https://poqpoq.com/terraformer/" target="_blank">Terraformer</a>
+          <span>Terrain</span>
+        </div>
+        <div class="ecosystem-item">
+          <a href="https://poqpoq.com/landscaper/" target="_blank">Landscaper</a>
+          <span>Scatter</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="js/nav.js"></script>
+</body>
+</html>

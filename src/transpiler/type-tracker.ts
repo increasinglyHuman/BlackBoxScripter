@@ -26,7 +26,7 @@ import type {
  * Return types for ll-star and os-star built-in functions.
  * Derived from LSL wiki and ll-map.ts categories.
  */
-const BUILTIN_RETURN_TYPES: Record<string, LSLType> = {
+export const BUILTIN_RETURN_TYPES: Record<string, LSLType> = {
   // --- Position / Rotation (vector/rotation returns) ---
   llGetPos: "vector",
   llGetLocalPos: "vector",
@@ -668,6 +668,3 @@ export interface OperatorOverload {
   /** For division: emit 1/right as the scale factor */
   invert?: boolean;
 }
-
-/** Expose for testing */
-export { BUILTIN_RETURN_TYPES };

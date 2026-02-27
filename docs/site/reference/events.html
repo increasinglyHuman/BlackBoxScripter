@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Reference — BlackBox Scripter Docs</title>
+  <link rel="icon" type="image/svg+xml" href="../images/poqpoq-favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/docs.css">
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <div class="page-layout">
+    <nav id="sidebar-nav"></nav>
+
+    <main class="content-area">
+
+      <div class="breadcrumb">
+        <a href="../">Home</a>
+        <span class="separator">&rsaquo;</span>
+        <a href="../">Reference</a>
+        <span class="separator">&rsaquo;</span>
+        Events
+      </div>
+
+      <h1>Event <span class="accent">Reference</span></h1>
+      <p class="page-subtitle">All LSL events with their poqpoq handler names, parameter signatures, and capabilities.</p>
+
+      <p class="fn-summary">38 events</p>
+
+      <table class="fn-table">
+        <thead><tr><th>LSL Event</th><th>poqpoq Handler</th><th>Parameters</th><th>Flags</th></tr></thead>
+        <tbody>
+          <tr class="fn-row">
+            <td class="fn-name"><code>at_rot_target</code></td>
+            <td class="fn-api"><code>onAtRotTarget</code></td>
+            <td class="fn-notes"><code>(integer tnum, rotation targetrot, rotation ourrot)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>at_target</code></td>
+            <td class="fn-api"><code>onAtTarget</code></td>
+            <td class="fn-notes"><code>(integer tnum, vector targetpos, vector ourpos)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>attach</code></td>
+            <td class="fn-api"><code>onAttach</code></td>
+            <td class="fn-notes"><code>(key id)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>changed</code></td>
+            <td class="fn-api"><code>onChanged</code></td>
+            <td class="fn-notes"><code>(integer change)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>collision</code></td>
+            <td class="fn-api"><code>onCollision</code></td>
+            <td class="fn-notes"><code>(integer num_detected)</code></td>
+            <td><span class="badge detected-badge">detected</span></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>collision_end</code></td>
+            <td class="fn-api"><code>onCollisionEnd</code></td>
+            <td class="fn-notes"><code>(integer num_detected)</code></td>
+            <td><span class="badge detected-badge">detected</span></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>collision_start</code></td>
+            <td class="fn-api"><code>onCollisionStart</code></td>
+            <td class="fn-notes"><code>(integer num_detected)</code></td>
+            <td><span class="badge detected-badge">detected</span></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>control</code></td>
+            <td class="fn-api"><code>onControl</code></td>
+            <td class="fn-notes"><code>(key id, integer level, integer edge)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>dataserver</code></td>
+            <td class="fn-api"><code>onDataserver</code></td>
+            <td class="fn-notes"><code>(key queryid, string data)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>email</code></td>
+            <td class="fn-api"><code><span class="text-dim">—</span></code></td>
+            <td class="fn-notes"><code>(string time, string address, string subj, string message, integer num_left)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>experience_permissions</code></td>
+            <td class="fn-api"><code><span class="text-dim">—</span></code></td>
+            <td class="fn-notes"><code>(key agent_id)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>experience_permissions_denied</code></td>
+            <td class="fn-api"><code><span class="text-dim">—</span></code></td>
+            <td class="fn-notes"><code>(key agent_id, integer reason)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>http_request</code></td>
+            <td class="fn-api"><code><span class="text-dim">—</span></code></td>
+            <td class="fn-notes"><code>(key id, string method, string body)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>http_response</code></td>
+            <td class="fn-api"><code>onHttpResponse</code></td>
+            <td class="fn-notes"><code>(key request_id, integer status, list metadata, string body)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>land_collision</code></td>
+            <td class="fn-api"><code><span class="text-dim">—</span></code></td>
+            <td class="fn-notes"><code>(vector pos)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>land_collision_end</code></td>
+            <td class="fn-api"><code><span class="text-dim">—</span></code></td>
+            <td class="fn-notes"><code>(vector pos)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>land_collision_start</code></td>
+            <td class="fn-api"><code>onLandCollisionStart</code></td>
+            <td class="fn-notes"><code>(vector pos)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>link_message</code></td>
+            <td class="fn-api"><code>onLinkMessage</code></td>
+            <td class="fn-notes"><code>(integer sender_num, integer num, string str, key id)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>listen</code></td>
+            <td class="fn-api"><code>onListen</code></td>
+            <td class="fn-notes"><code>(integer channel, string name, key id, string message)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>money</code></td>
+            <td class="fn-api"><code>onMoney</code></td>
+            <td class="fn-notes"><code>(key id, integer amount)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>moving_end</code></td>
+            <td class="fn-api"><code>onMovingEnd</code></td>
+            <td class="fn-notes"><code>()</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>moving_start</code></td>
+            <td class="fn-api"><code>onMovingStart</code></td>
+            <td class="fn-notes"><code>()</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>no_sensor</code></td>
+            <td class="fn-api"><code>onNoSensor</code></td>
+            <td class="fn-notes"><code>()</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>not_at_rot_target</code></td>
+            <td class="fn-api"><code><span class="text-dim">—</span></code></td>
+            <td class="fn-notes"><code>()</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>not_at_target</code></td>
+            <td class="fn-api"><code>onNotAtTarget</code></td>
+            <td class="fn-notes"><code>()</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>object_rez</code></td>
+            <td class="fn-api"><code><span class="text-dim">—</span></code></td>
+            <td class="fn-notes"><code>(key id)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>on_rez</code></td>
+            <td class="fn-api"><code>onRez</code></td>
+            <td class="fn-notes"><code>(integer start_param)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>path_update</code></td>
+            <td class="fn-api"><code><span class="text-dim">—</span></code></td>
+            <td class="fn-notes"><code>(integer type, list reserved)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>remote_data</code></td>
+            <td class="fn-api"><code><span class="text-dim">—</span></code></td>
+            <td class="fn-notes"><code>(integer event_type, key channel, key message_id, string sender, integer idata, string sdata)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>run_time_permissions</code></td>
+            <td class="fn-api"><code>onPermissions</code></td>
+            <td class="fn-notes"><code>(integer perm)</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>sensor</code></td>
+            <td class="fn-api"><code>onSensor</code></td>
+            <td class="fn-notes"><code>(integer num_detected)</code></td>
+            <td><span class="badge detected-badge">detected</span></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>state_entry</code></td>
+            <td class="fn-api"><code>onStateEntry</code></td>
+            <td class="fn-notes"><code>()</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>state_exit</code></td>
+            <td class="fn-api"><code>onStateExit</code></td>
+            <td class="fn-notes"><code>()</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>timer</code></td>
+            <td class="fn-api"><code>onTimer</code></td>
+            <td class="fn-notes"><code>()</code></td>
+            <td></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>touch</code></td>
+            <td class="fn-api"><code>onTouch</code></td>
+            <td class="fn-notes"><code>(integer num_detected)</code></td>
+            <td><span class="badge detected-badge">detected</span></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>touch_end</code></td>
+            <td class="fn-api"><code>onTouchEnd</code></td>
+            <td class="fn-notes"><code>(integer num_detected)</code></td>
+            <td><span class="badge detected-badge">detected</span></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>touch_start</code></td>
+            <td class="fn-api"><code>onTouchStart</code></td>
+            <td class="fn-notes"><code>(integer num_detected)</code></td>
+            <td><span class="badge detected-badge">detected</span></td>
+          </tr>
+          <tr class="fn-row">
+            <td class="fn-name"><code>transaction_result</code></td>
+            <td class="fn-api"><code><span class="text-dim">—</span></code></td>
+            <td class="fn-notes"><code>(key id, integer success, string data)</code></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-info">
+        <div class="callout-title">Detected Events</div>
+        <p>Events marked <span class="badge detected-badge">detected</span> receive a <code>detected[]</code> array parameter.
+        Each element has: <code>id</code>, <code>name</code>, <code>position</code>, <code>rotation</code>, <code>velocity</code>,
+        <code>type</code>, <code>ownerId</code>, <code>groupId</code>, <code>grabOffset</code>, <code>linkNumber</code>,
+        <code>touchFace</code>, <code>touchNormal</code>, <code>touchBinormal</code>, <code>touchPosition</code>,
+        <code>touchST</code>, <code>touchUV</code>.</p>
+      </div>
+
+
+    </main>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/nav.js"></script>
+</body>
+</html>

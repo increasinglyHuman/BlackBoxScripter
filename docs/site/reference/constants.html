@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constants Reference — BlackBox Scripter Docs</title>
+  <link rel="icon" type="image/svg+xml" href="../images/poqpoq-favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/docs.css">
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <div class="page-layout">
+    <nav id="sidebar-nav"></nav>
+
+    <main class="content-area">
+
+      <div class="breadcrumb">
+        <a href="../">Home</a>
+        <span class="separator">&rsaquo;</span>
+        <a href="../">Reference</a>
+        <span class="separator">&rsaquo;</span>
+        Constants
+      </div>
+
+      <h1>Constants <span class="accent">Reference</span></h1>
+      <p class="page-subtitle">All LSL constants and their TypeScript equivalents. Auto-generated from source.</p>
+
+      <p class="fn-summary">324 constants across 28 groups</p>
+
+      <div class="category-section" id="booleans">
+        <h2>Booleans</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>TRUE</code></td>
+              <td class="fn-api"><code>true</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>FALSE</code></td>
+              <td class="fn-api"><code>false</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="null-values">
+        <h2>Null Values</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>NULL_KEY</code></td>
+              <td class="fn-api"><code>&quot;00000000-0000-0000-0000-000000000000&quot;</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>EOF</code></td>
+              <td class="fn-api"><code>&quot;&quot;</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="vectors-rotations">
+        <h2>Vectors &amp; Rotations</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ZERO_VECTOR</code></td>
+              <td class="fn-api"><code>Vector3.ZERO</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ZERO_ROTATION</code></td>
+              <td class="fn-api"><code>Quaternion.IDENTITY</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>TOUCH_INVALID_TEXCOORD</code></td>
+              <td class="fn-api"><code>new Vector3(-1, -1, 0)</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_ROTATION</code></td>
+              <td class="fn-api"><code>8</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>TYPE_VECTOR</code></td>
+              <td class="fn-api"><code>5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>TYPE_ROTATION</code></td>
+              <td class="fn-api"><code>6</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="math-constants">
+        <h2>Math Constants</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PI</code></td>
+              <td class="fn-api"><code>Math.PI</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>TWO_PI</code></td>
+              <td class="fn-api"><code>(Math.PI * 2)</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PI_BY_TWO</code></td>
+              <td class="fn-api"><code>(Math.PI / 2)</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>DEG_TO_RAD</code></td>
+              <td class="fn-api"><code>(Math.PI / 180)</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>RAD_TO_DEG</code></td>
+              <td class="fn-api"><code>(180 / Math.PI)</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>SQRT2</code></td>
+              <td class="fn-api"><code>Math.SQRT2</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="link-targets">
+        <h2>Link Targets</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>LINK_SET</code></td>
+              <td class="fn-api"><code>LINK_SET</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>LINK_ROOT</code></td>
+              <td class="fn-api"><code>LINK_ROOT</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>LINK_THIS</code></td>
+              <td class="fn-api"><code>LINK_THIS</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>LINK_ALL_OTHERS</code></td>
+              <td class="fn-api"><code>LINK_ALL_OTHERS</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>LINK_ALL_CHILDREN</code></td>
+              <td class="fn-api"><code>LINK_ALL_CHILDREN</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="face-side">
+        <h2>Face / Side</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ALL_SIDES</code></td>
+              <td class="fn-api"><code>-1</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="status-flags">
+        <h2>Status Flags</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STATUS_PHYSICS</code></td>
+              <td class="fn-api"><code>0x01</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STATUS_ROTATE_X</code></td>
+              <td class="fn-api"><code>0x02</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STATUS_ROTATE_Y</code></td>
+              <td class="fn-api"><code>0x04</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STATUS_ROTATE_Z</code></td>
+              <td class="fn-api"><code>0x08</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STATUS_PHANTOM</code></td>
+              <td class="fn-api"><code>0x10</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STATUS_SANDBOX</code></td>
+              <td class="fn-api"><code>0x20</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STATUS_BLOCK_GRAB</code></td>
+              <td class="fn-api"><code>0x40</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STATUS_DIE_AT_EDGE</code></td>
+              <td class="fn-api"><code>0x80</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STATUS_RETURN_AT_EDGE</code></td>
+              <td class="fn-api"><code>0x100</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STATUS_CAST_SHADOWS</code></td>
+              <td class="fn-api"><code>0x200</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STATUS_BLOCK_GRAB_OBJECT</code></td>
+              <td class="fn-api"><code>0x400</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="agent-types">
+        <h2>Agent Types</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>AGENT</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ACTIVE</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PASSIVE</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>SCRIPTED</code></td>
+              <td class="fn-api"><code>8</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="other">
+        <h2>Other</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>AGENT_BY_LEGACY_NAME</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>AGENT_BY_USERNAME</code></td>
+              <td class="fn-api"><code>0x10</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="permission-flags">
+        <h2>Permission Flags</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PERMISSION_DEBIT</code></td>
+              <td class="fn-api"><code>0x02</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PERMISSION_TAKE_CONTROLS</code></td>
+              <td class="fn-api"><code>0x04</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PERMISSION_TRIGGER_ANIMATION</code></td>
+              <td class="fn-api"><code>0x10</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PERMISSION_ATTACH</code></td>
+              <td class="fn-api"><code>0x20</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PERMISSION_CHANGE_LINKS</code></td>
+              <td class="fn-api"><code>0x80</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PERMISSION_TRACK_CAMERA</code></td>
+              <td class="fn-api"><code>0x400</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PERMISSION_CONTROL_CAMERA</code></td>
+              <td class="fn-api"><code>0x800</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PERMISSION_TELEPORT</code></td>
+              <td class="fn-api"><code>0x1000</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PERMISSION_OVERRIDE_ANIMATIONS</code></td>
+              <td class="fn-api"><code>0x8000</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="changed-flags">
+        <h2>Changed Flags</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CHANGED_INVENTORY</code></td>
+              <td class="fn-api"><code>0x01</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CHANGED_COLOR</code></td>
+              <td class="fn-api"><code>0x02</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CHANGED_SHAPE</code></td>
+              <td class="fn-api"><code>0x04</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CHANGED_SCALE</code></td>
+              <td class="fn-api"><code>0x08</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CHANGED_TEXTURE</code></td>
+              <td class="fn-api"><code>0x10</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CHANGED_LINK</code></td>
+              <td class="fn-api"><code>0x20</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CHANGED_ALLOWED_DROP</code></td>
+              <td class="fn-api"><code>0x40</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CHANGED_OWNER</code></td>
+              <td class="fn-api"><code>0x80</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CHANGED_REGION</code></td>
+              <td class="fn-api"><code>0x100</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CHANGED_TELEPORT</code></td>
+              <td class="fn-api"><code>0x200</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CHANGED_REGION_START</code></td>
+              <td class="fn-api"><code>0x400</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CHANGED_MEDIA</code></td>
+              <td class="fn-api"><code>0x800</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="inventory-types">
+        <h2>Inventory Types</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>INVENTORY_NONE</code></td>
+              <td class="fn-api"><code>-1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>INVENTORY_ALL</code></td>
+              <td class="fn-api"><code>-1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>INVENTORY_TEXTURE</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>INVENTORY_SOUND</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>INVENTORY_LANDMARK</code></td>
+              <td class="fn-api"><code>3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>INVENTORY_CLOTHING</code></td>
+              <td class="fn-api"><code>5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>INVENTORY_OBJECT</code></td>
+              <td class="fn-api"><code>6</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>INVENTORY_NOTECARD</code></td>
+              <td class="fn-api"><code>7</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>INVENTORY_SCRIPT</code></td>
+              <td class="fn-api"><code>10</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>INVENTORY_BODYPART</code></td>
+              <td class="fn-api"><code>13</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>INVENTORY_ANIMATION</code></td>
+              <td class="fn-api"><code>20</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>INVENTORY_GESTURE</code></td>
+              <td class="fn-api"><code>21</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>INVENTORY_SETTING</code></td>
+              <td class="fn-api"><code>56</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="attach-points">
+        <h2>Attach Points</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_CHEST</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_HEAD</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_LSHOULDER</code></td>
+              <td class="fn-api"><code>3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_RSHOULDER</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_LHAND</code></td>
+              <td class="fn-api"><code>5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_RHAND</code></td>
+              <td class="fn-api"><code>6</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_LFOOT</code></td>
+              <td class="fn-api"><code>7</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_RFOOT</code></td>
+              <td class="fn-api"><code>8</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_BACK</code></td>
+              <td class="fn-api"><code>9</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_PELVIS</code></td>
+              <td class="fn-api"><code>10</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_MOUTH</code></td>
+              <td class="fn-api"><code>11</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_CHIN</code></td>
+              <td class="fn-api"><code>12</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_LEAR</code></td>
+              <td class="fn-api"><code>13</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_REAR</code></td>
+              <td class="fn-api"><code>14</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_LEYE</code></td>
+              <td class="fn-api"><code>15</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_REYE</code></td>
+              <td class="fn-api"><code>16</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_NOSE</code></td>
+              <td class="fn-api"><code>17</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_RUARM</code></td>
+              <td class="fn-api"><code>18</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_RLARM</code></td>
+              <td class="fn-api"><code>19</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_LUARM</code></td>
+              <td class="fn-api"><code>20</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_LLARM</code></td>
+              <td class="fn-api"><code>21</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_RHIP</code></td>
+              <td class="fn-api"><code>22</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_RULEG</code></td>
+              <td class="fn-api"><code>23</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_RLLEG</code></td>
+              <td class="fn-api"><code>24</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_LHIP</code></td>
+              <td class="fn-api"><code>25</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_LULEG</code></td>
+              <td class="fn-api"><code>26</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_LLLEG</code></td>
+              <td class="fn-api"><code>27</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_BELLY</code></td>
+              <td class="fn-api"><code>28</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_LEFT_PEC</code></td>
+              <td class="fn-api"><code>29</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_RIGHT_PEC</code></td>
+              <td class="fn-api"><code>30</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_HUD_CENTER_2</code></td>
+              <td class="fn-api"><code>31</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_HUD_TOP_RIGHT</code></td>
+              <td class="fn-api"><code>32</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_HUD_TOP_CENTER</code></td>
+              <td class="fn-api"><code>33</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_HUD_TOP_LEFT</code></td>
+              <td class="fn-api"><code>34</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_HUD_CENTER_1</code></td>
+              <td class="fn-api"><code>35</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_HUD_BOTTOM_LEFT</code></td>
+              <td class="fn-api"><code>36</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_HUD_BOTTOM</code></td>
+              <td class="fn-api"><code>37</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_HUD_BOTTOM_RIGHT</code></td>
+              <td class="fn-api"><code>38</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_NECK</code></td>
+              <td class="fn-api"><code>39</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ATTACH_AVATAR_CENTER</code></td>
+              <td class="fn-api"><code>40</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="channels">
+        <h2>Channels</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PUBLIC_CHANNEL</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>DEBUG_CHANNEL</code></td>
+              <td class="fn-api"><code>0x7FFFFFFF</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="click-actions">
+        <h2>Click Actions</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CLICK_ACTION_NONE</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CLICK_ACTION_TOUCH</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CLICK_ACTION_SIT</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CLICK_ACTION_BUY</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CLICK_ACTION_PAY</code></td>
+              <td class="fn-api"><code>3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CLICK_ACTION_OPEN</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CLICK_ACTION_PLAY</code></td>
+              <td class="fn-api"><code>5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CLICK_ACTION_OPEN_MEDIA</code></td>
+              <td class="fn-api"><code>6</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="texture-animation">
+        <h2>Texture Animation</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ANIM_ON</code></td>
+              <td class="fn-api"><code>0x01</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>LOOP</code></td>
+              <td class="fn-api"><code>0x02</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>REVERSE</code></td>
+              <td class="fn-api"><code>0x04</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PING_PONG</code></td>
+              <td class="fn-api"><code>0x08</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>SMOOTH</code></td>
+              <td class="fn-api"><code>0x10</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>ROTATE</code></td>
+              <td class="fn-api"><code>0x20</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>SCALE</code></td>
+              <td class="fn-api"><code>0x40</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="particle-system">
+        <h2>Particle System</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_FLAGS</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_START_COLOR</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_START_ALPHA</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_END_COLOR</code></td>
+              <td class="fn-api"><code>3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_END_ALPHA</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_START_SCALE</code></td>
+              <td class="fn-api"><code>5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_END_SCALE</code></td>
+              <td class="fn-api"><code>6</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_MAX_AGE</code></td>
+              <td class="fn-api"><code>7</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_ACCEL</code></td>
+              <td class="fn-api"><code>8</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_PATTERN</code></td>
+              <td class="fn-api"><code>9</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_TEXTURE</code></td>
+              <td class="fn-api"><code>12</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_BURST_RATE</code></td>
+              <td class="fn-api"><code>13</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_BURST_PART_COUNT</code></td>
+              <td class="fn-api"><code>15</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_BURST_RADIUS</code></td>
+              <td class="fn-api"><code>16</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_BURST_SPEED_MIN</code></td>
+              <td class="fn-api"><code>17</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_BURST_SPEED_MAX</code></td>
+              <td class="fn-api"><code>18</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_MAX_AGE</code></td>
+              <td class="fn-api"><code>19</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_TARGET_KEY</code></td>
+              <td class="fn-api"><code>20</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_OMEGA</code></td>
+              <td class="fn-api"><code>21</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_ANGLE_BEGIN</code></td>
+              <td class="fn-api"><code>22</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_ANGLE_END</code></td>
+              <td class="fn-api"><code>23</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_PATTERN_DROP</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_PATTERN_EXPLODE</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_PATTERN_ANGLE</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_PATTERN_ANGLE_CONE</code></td>
+              <td class="fn-api"><code>8</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_SRC_PATTERN_ANGLE_CONE_EMPTY</code></td>
+              <td class="fn-api"><code>16</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_INTERP_COLOR_MASK</code></td>
+              <td class="fn-api"><code>0x001</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_INTERP_SCALE_MASK</code></td>
+              <td class="fn-api"><code>0x002</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_BOUNCE_MASK</code></td>
+              <td class="fn-api"><code>0x004</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_WIND_MASK</code></td>
+              <td class="fn-api"><code>0x008</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_FOLLOW_SRC_MASK</code></td>
+              <td class="fn-api"><code>0x010</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_FOLLOW_VELOCITY_MASK</code></td>
+              <td class="fn-api"><code>0x020</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_TARGET_POS_MASK</code></td>
+              <td class="fn-api"><code>0x040</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_TARGET_LINEAR_MASK</code></td>
+              <td class="fn-api"><code>0x080</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_EMISSIVE_MASK</code></td>
+              <td class="fn-api"><code>0x100</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PSYS_PART_RIBBON_MASK</code></td>
+              <td class="fn-api"><code>0x400</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="prim-parameters">
+        <h2>Prim Parameters</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_TYPE</code></td>
+              <td class="fn-api"><code>9</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MATERIAL</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_PHYSICS</code></td>
+              <td class="fn-api"><code>3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_TEMP_ON_REZ</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_PHANTOM</code></td>
+              <td class="fn-api"><code>5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_POSITION</code></td>
+              <td class="fn-api"><code>6</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_SIZE</code></td>
+              <td class="fn-api"><code>7</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_TEXTURE</code></td>
+              <td class="fn-api"><code>17</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_COLOR</code></td>
+              <td class="fn-api"><code>18</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_BUMP_SHINY</code></td>
+              <td class="fn-api"><code>19</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_FULLBRIGHT</code></td>
+              <td class="fn-api"><code>20</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_FLEXIBLE</code></td>
+              <td class="fn-api"><code>21</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_TEXGEN</code></td>
+              <td class="fn-api"><code>22</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_POINT_LIGHT</code></td>
+              <td class="fn-api"><code>23</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_GLOW</code></td>
+              <td class="fn-api"><code>25</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_TEXT</code></td>
+              <td class="fn-api"><code>26</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_NAME</code></td>
+              <td class="fn-api"><code>27</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_DESC</code></td>
+              <td class="fn-api"><code>28</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_LINK_TARGET</code></td>
+              <td class="fn-api"><code>34</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_TYPE_BOX</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_TYPE_CYLINDER</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_TYPE_PRISM</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_TYPE_SPHERE</code></td>
+              <td class="fn-api"><code>3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_TYPE_TORUS</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_TYPE_TUBE</code></td>
+              <td class="fn-api"><code>5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_TYPE_RING</code></td>
+              <td class="fn-api"><code>6</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_TYPE_SCULPT</code></td>
+              <td class="fn-api"><code>7</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_PHYSICS_SHAPE_PRIM</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_PHYSICS_SHAPE_NONE</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_PHYSICS_SHAPE_CONVEX</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MATERIAL_STONE</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MATERIAL_METAL</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MATERIAL_GLASS</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MATERIAL_WOOD</code></td>
+              <td class="fn-api"><code>3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MATERIAL_FLESH</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MATERIAL_PLASTIC</code></td>
+              <td class="fn-api"><code>5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MATERIAL_RUBBER</code></td>
+              <td class="fn-api"><code>6</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MATERIAL_LIGHT</code></td>
+              <td class="fn-api"><code>7</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="media-on-a-prim">
+        <h2>Media on a Prim</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_ALT_IMAGE_ENABLE</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_ALT_IMAGE</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_CURRENT_URL</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_HOME_URL</code></td>
+              <td class="fn-api"><code>3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_AUTO_PLAY</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_AUTO_LOOP</code></td>
+              <td class="fn-api"><code>5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_AUTO_SCALE</code></td>
+              <td class="fn-api"><code>6</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_AUTO_ZOOM</code></td>
+              <td class="fn-api"><code>7</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_FIRST_CLICK_INTERACT</code></td>
+              <td class="fn-api"><code>8</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_WIDTH_PIXELS</code></td>
+              <td class="fn-api"><code>9</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_HEIGHT_PIXELS</code></td>
+              <td class="fn-api"><code>10</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_WHITELIST_ENABLE</code></td>
+              <td class="fn-api"><code>11</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_WHITELIST</code></td>
+              <td class="fn-api"><code>12</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_PERMS_INTERACT</code></td>
+              <td class="fn-api"><code>13</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_PERMS_CONTROL</code></td>
+              <td class="fn-api"><code>14</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_CONTROLS</code></td>
+              <td class="fn-api"><code>15</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_CONTROLS_STANDARD</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_CONTROLS_MINI</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_PERM_NONE</code></td>
+              <td class="fn-api"><code>0x0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_PERM_OWNER</code></td>
+              <td class="fn-api"><code>0x1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_PERM_GROUP</code></td>
+              <td class="fn-api"><code>0x2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PRIM_MEDIA_PERM_ANYONE</code></td>
+              <td class="fn-api"><code>0x4</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="control-flags">
+        <h2>Control Flags</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CONTROL_FWD</code></td>
+              <td class="fn-api"><code>0x01</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CONTROL_BACK</code></td>
+              <td class="fn-api"><code>0x02</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CONTROL_LEFT</code></td>
+              <td class="fn-api"><code>0x04</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CONTROL_RIGHT</code></td>
+              <td class="fn-api"><code>0x08</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CONTROL_ROT_LEFT</code></td>
+              <td class="fn-api"><code>0x100</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CONTROL_ROT_RIGHT</code></td>
+              <td class="fn-api"><code>0x200</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CONTROL_UP</code></td>
+              <td class="fn-api"><code>0x10</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CONTROL_DOWN</code></td>
+              <td class="fn-api"><code>0x20</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CONTROL_LBUTTON</code></td>
+              <td class="fn-api"><code>0x10000000</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>CONTROL_ML_LBUTTON</code></td>
+              <td class="fn-api"><code>0x40000000</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="http">
+        <h2>HTTP</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>HTTP_METHOD</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>HTTP_MIMETYPE</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>HTTP_BODY_MAXLENGTH</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>HTTP_VERIFY_CERT</code></td>
+              <td class="fn-api"><code>3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>HTTP_BODY_TRUNCATED</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>HTTP_VERBOSE_THROTTLE</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>HTTP_CUSTOM_HEADER</code></td>
+              <td class="fn-api"><code>5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>HTTP_PRAGMA_NO_CACHE</code></td>
+              <td class="fn-api"><code>6</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="pay-money">
+        <h2>Pay / Money</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PAY_HIDE</code></td>
+              <td class="fn-api"><code>-1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PAY_DEFAULT</code></td>
+              <td class="fn-api"><code>-2</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="string-trim">
+        <h2>String Trim</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STRING_TRIM_HEAD</code></td>
+              <td class="fn-api"><code>0x01</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STRING_TRIM_TAIL</code></td>
+              <td class="fn-api"><code>0x02</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>STRING_TRIM</code></td>
+              <td class="fn-api"><code>0x03</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="json">
+        <h2>JSON</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>JSON_VALUE_TYPE_UNDEF</code></td>
+              <td class="fn-api"><code>-1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>JSON_OBJECT</code></td>
+              <td class="fn-api"><code>-2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>JSON_ARRAY</code></td>
+              <td class="fn-api"><code>-3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>JSON_NUMBER</code></td>
+              <td class="fn-api"><code>-4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>JSON_STRING</code></td>
+              <td class="fn-api"><code>-5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>JSON_NULL</code></td>
+              <td class="fn-api"><code>-6</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>JSON_TRUE</code></td>
+              <td class="fn-api"><code>-7</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>JSON_FALSE</code></td>
+              <td class="fn-api"><code>-8</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>JSON_DELETE</code></td>
+              <td class="fn-api"><code>-9</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>JSON_INVALID</code></td>
+              <td class="fn-api"><code>⊗</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>JSON_APPEND</code></td>
+              <td class="fn-api"><code>-1</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="object-details">
+        <h2>Object Details</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_NAME</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_DESC</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_POS</code></td>
+              <td class="fn-api"><code>3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_ROT</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_VELOCITY</code></td>
+              <td class="fn-api"><code>5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_OWNER</code></td>
+              <td class="fn-api"><code>6</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_GROUP</code></td>
+              <td class="fn-api"><code>7</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_CREATOR</code></td>
+              <td class="fn-api"><code>8</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_RUNNING_SCRIPT_COUNT</code></td>
+              <td class="fn-api"><code>9</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_TOTAL_SCRIPT_COUNT</code></td>
+              <td class="fn-api"><code>10</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_SCRIPT_MEMORY</code></td>
+              <td class="fn-api"><code>11</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_SCRIPT_TIME</code></td>
+              <td class="fn-api"><code>12</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_PRIM_EQUIVALENCE</code></td>
+              <td class="fn-api"><code>13</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_SERVER_COST</code></td>
+              <td class="fn-api"><code>14</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_STREAMING_COST</code></td>
+              <td class="fn-api"><code>15</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_PHYSICS_COST</code></td>
+              <td class="fn-api"><code>16</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_CHARACTER_TIME</code></td>
+              <td class="fn-api"><code>17</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_ROOT</code></td>
+              <td class="fn-api"><code>18</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_ATTACHED_POINT</code></td>
+              <td class="fn-api"><code>19</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_PATHFINDING_TYPE</code></td>
+              <td class="fn-api"><code>20</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_PHYSICS</code></td>
+              <td class="fn-api"><code>21</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_PHANTOM</code></td>
+              <td class="fn-api"><code>22</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_TEMP_ON_REZ</code></td>
+              <td class="fn-api"><code>23</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_RENDER_WEIGHT</code></td>
+              <td class="fn-api"><code>24</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_HOVER_HEIGHT</code></td>
+              <td class="fn-api"><code>25</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_BODY_SHAPE_TYPE</code></td>
+              <td class="fn-api"><code>26</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_LAST_OWNER_ID</code></td>
+              <td class="fn-api"><code>27</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_CLICK_ACTION</code></td>
+              <td class="fn-api"><code>28</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_OMEGA</code></td>
+              <td class="fn-api"><code>29</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_PRIM_COUNT</code></td>
+              <td class="fn-api"><code>30</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_TOTAL_INVENTORY_COUNT</code></td>
+              <td class="fn-api"><code>31</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_REZZER_KEY</code></td>
+              <td class="fn-api"><code>32</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_GROUP_TAG</code></td>
+              <td class="fn-api"><code>33</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_TEMP_ATTACHED</code></td>
+              <td class="fn-api"><code>34</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_ATTACHED_SLOTS_AVAILABLE</code></td>
+              <td class="fn-api"><code>35</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_CREATION_TIME</code></td>
+              <td class="fn-api"><code>36</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_SELECT_COUNT</code></td>
+              <td class="fn-api"><code>37</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_SIT_COUNT</code></td>
+              <td class="fn-api"><code>38</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OBJECT_ANIMATED_COUNT</code></td>
+              <td class="fn-api"><code>39</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="data-types">
+        <h2>Data Types</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>TYPE_INTEGER</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>TYPE_FLOAT</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>TYPE_STRING</code></td>
+              <td class="fn-api"><code>3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>TYPE_KEY</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>TYPE_INVALID</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="npc-flags-ossl-">
+        <h2>NPC Flags (OSSL)</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OS_NPC_CREATOR_OWNED</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OS_NPC_SENSE_AS_AGENT</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OS_NPC_NO_FLY</code></td>
+              <td class="fn-api"><code>3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OS_NPC_NOT_OWNED</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OS_NPC_RUNNING</code></td>
+              <td class="fn-api"><code>5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OS_NPC_LAND_AT_TARGET</code></td>
+              <td class="fn-api"><code>6</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>OS_NPC_FLY</code></td>
+              <td class="fn-api"><code>7</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="parcel-media">
+        <h2>Parcel Media</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Constant</th><th>TypeScript Equivalent</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PARCEL_MEDIA_COMMAND_STOP</code></td>
+              <td class="fn-api"><code>0</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PARCEL_MEDIA_COMMAND_PAUSE</code></td>
+              <td class="fn-api"><code>1</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PARCEL_MEDIA_COMMAND_PLAY</code></td>
+              <td class="fn-api"><code>2</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PARCEL_MEDIA_COMMAND_LOOP</code></td>
+              <td class="fn-api"><code>3</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PARCEL_MEDIA_COMMAND_TEXTURE</code></td>
+              <td class="fn-api"><code>4</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PARCEL_MEDIA_COMMAND_URL</code></td>
+              <td class="fn-api"><code>5</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PARCEL_MEDIA_COMMAND_TIME</code></td>
+              <td class="fn-api"><code>6</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PARCEL_MEDIA_COMMAND_AGENT</code></td>
+              <td class="fn-api"><code>7</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PARCEL_MEDIA_COMMAND_UNLOAD</code></td>
+              <td class="fn-api"><code>8</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PARCEL_MEDIA_COMMAND_AUTO_ALIGN</code></td>
+              <td class="fn-api"><code>9</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PARCEL_MEDIA_COMMAND_TYPE</code></td>
+              <td class="fn-api"><code>10</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PARCEL_MEDIA_COMMAND_SIZE</code></td>
+              <td class="fn-api"><code>11</code></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>PARCEL_MEDIA_COMMAND_DESC</code></td>
+              <td class="fn-api"><code>12</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+    </main>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/nav.js"></script>
+</body>
+</html>

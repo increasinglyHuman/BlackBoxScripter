@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started — Black Box Scripter Docs</title>
+  <link rel="icon" type="image/svg+xml" href="images/poqpoq-favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/docs.css">
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <div class="page-layout">
+    <nav id="sidebar-nav"></nav>
+
+    <main class="content-area">
+
+      <div class="breadcrumb">
+        <a href="./">Home</a>
+        <span class="separator">&rsaquo;</span>
+        Getting Started
+      </div>
+
+      <h1>Getting <span class="accent">Started</span></h1>
+      <p class="page-subtitle">
+        From LSL script to modern TypeScript in under a minute.
+      </p>
+
+      <h2>What is BlackBox Scripter?</h2>
+      <p>
+        BlackBox Scripter is a <strong>transpiler</strong> that converts
+        <a href="https://wiki.secondlife.com/wiki/LSL_Portal" target="_blank">LSL</a>
+        (Linden Scripting Language) and
+        <a href="http://opensimulator.org/wiki/OSSL" target="_blank">OSSL</a>
+        scripts into clean, type-safe TypeScript for the
+        <a href="https://poqpoq.com/world/" target="_blank">poqpoq World</a> engine.
+      </p>
+      <p>
+        It handles the entire LSL language: types, events, state machines, operator overloading,
+        400+ constants, and 200+ built-in functions. The output runs in a
+        <a href="https://github.com/nicolo-ribaudo/tc39-proposal-ses" target="_blank">SES</a>-secured
+        Web Worker sandbox.
+      </p>
+
+      <h2 id="how-it-works">How It Works</h2>
+      <p>The transpiler pipeline has four stages:</p>
+      <ol class="steps">
+        <li>
+          <strong>Preprocess</strong>
+          Strip BOM, normalize line endings, remove null bytes and zero-width characters.
+        </li>
+        <li>
+          <strong>Tokenize</strong>
+          LSL source is lexed into tokens: keywords, identifiers, operators, literals, comments.
+        </li>
+        <li>
+          <strong>Parse</strong>
+          Tokens become an AST (Abstract Syntax Tree) with full LSL grammar support:
+          states, events, global variables, user functions, type declarations.
+        </li>
+        <li>
+          <strong>Generate</strong>
+          The AST is walked to emit TypeScript. LSL functions become World API calls,
+          operator overloading becomes method calls (<code>vec1.add(vec2)</code>),
+          and events become typed handler methods.
+        </li>
+      </ol>
+
+      <h2>Using the Editor</h2>
+      <p>
+        The fastest way to try Scripter is the
+        <a href="https://poqpoq.com/scripter/" target="_blank">online editor</a>.
+        Paste an LSL script in the left pane, and the transpiled TypeScript appears on the right.
+      </p>
+      <div class="callout callout-tip">
+        <div class="callout-title">Tip</div>
+        <p>Press <kbd>Ctrl</kbd>+<kbd>S</kbd> to force a transpile. The editor auto-saves to localStorage.</p>
+      </div>
+
+      <h2>Using the CLI</h2>
+      <p>For batch processing, use the CLI:</p>
+      <pre><code># Transpile a single file
+npx blackbox-scripter transpile script.lsl
+
+# Transpile an OAR bundle (from Legacy converter)
+npx blackbox-scripter bundle manifest.json -o output/</code></pre>
+
+      <h2 id="sandbox">The SES Sandbox</h2>
+      <p>
+        Transpiled scripts run inside a
+        <strong>Secure ECMAScript (SES)</strong> compartment within a Web Worker.
+        This means scripts cannot access the DOM, network, or file system directly.
+        They interact with the world exclusively through the typed
+        <code>WorldScript</code> API &mdash; which the host engine controls.
+      </p>
+
+      <h2>Next Steps</h2>
+      <ul>
+        <li><a href="reference/functions.html">Function Reference</a> &mdash; every LSL function and its TypeScript equivalent</li>
+        <li><a href="reference/events.html">Event Reference</a> &mdash; all 38 LSL events mapped to handler methods</li>
+        <li><a href="reference/constants.html">Constants Reference</a> &mdash; ~400 LSL constants with TS values</li>
+      </ul>
+
+    </main>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="js/nav.js"></script>
+</body>
+</html>

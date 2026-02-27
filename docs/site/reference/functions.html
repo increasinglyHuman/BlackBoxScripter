@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Function Reference — BlackBox Scripter Docs</title>
+  <link rel="icon" type="image/svg+xml" href="../images/poqpoq-favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/docs.css">
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <div class="page-layout">
+    <nav id="sidebar-nav"></nav>
+
+    <main class="content-area">
+
+      <div class="breadcrumb">
+        <a href="../">Home</a>
+        <span class="separator">&rsaquo;</span>
+        <a href="../">Reference</a>
+        <span class="separator">&rsaquo;</span>
+        Functions
+      </div>
+
+      <h1>Function <span class="accent">Reference</span></h1>
+      <p class="page-subtitle">Every LSL function mapped to its poqpoq TypeScript equivalent. Auto-generated from source.</p>
+
+      <div class="fn-search-container">
+        <input type="text" id="fn-search" class="fn-search" placeholder="Search functions... (e.g. llSay, setPosition, math)">
+      </div>
+      <p class="fn-summary">148 functions across 21 categories</p>
+
+      <div class="fn-toc">
+        <a href="#communication">Communication <span class="fn-toc-count">(10)</span></a>
+        <a href="#object">Object Manipulation <span class="fn-toc-count">(18)</span></a>
+        <a href="#physics">Physics <span class="fn-toc-count">(7)</span></a>
+        <a href="#agent">Agent Interaction <span class="fn-toc-count">(13)</span></a>
+        <a href="#effects">Effects &amp; Sound <span class="fn-toc-count">(6)</span></a>
+        <a href="#timer">Timer &amp; Sleep <span class="fn-toc-count">(2)</span></a>
+        <a href="#perception">Perception &amp; Sensors <span class="fn-toc-count">(6)</span></a>
+        <a href="#data">Data &amp; HTTP <span class="fn-toc-count">(4)</span></a>
+        <a href="#math">Math <span class="fn-toc-count">(19)</span></a>
+        <a href="#string">String <span class="fn-toc-count">(8)</span></a>
+        <a href="#list">List / Array <span class="fn-toc-count">(11)</span></a>
+        <a href="#environment">Environment <span class="fn-toc-count">(6)</span></a>
+        <a href="#ossl-npc">OSSL — NPC <span class="fn-toc-count">(9)</span></a>
+        <a href="#ossl-data">OSSL — Data <span class="fn-toc-count">(2)</span></a>
+        <a href="#ossl-terrain">OSSL — Terrain <span class="fn-toc-count">(1)</span></a>
+        <a href="#ossl-agent">OSSL — Agent <span class="fn-toc-count">(1)</span></a>
+        <a href="#ossl-texture">OSSL — Texture <span class="fn-toc-count">(1)</span></a>
+        <a href="#media">Media on a Prim <span class="fn-toc-count">(6)</span></a>
+        <a href="#dialog">Dialog / UI <span class="fn-toc-count">(4)</span></a>
+        <a href="#inventory">Inventory <span class="fn-toc-count">(10)</span></a>
+        <a href="#economy">Economy / Money <span class="fn-toc-count">(4)</span></a>
+      </div>
+
+      <div class="category-section" id="communication">
+        <h2>Communication</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSay</code></td>
+              <td class="fn-api"><code>this.say(channel, message)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llWhisper</code></td>
+              <td class="fn-api"><code>this.whisper(channel, message)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llShout</code></td>
+              <td class="fn-api"><code>this.shout(channel, message)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llRegionSay</code></td>
+              <td class="fn-api"><code>this.world.regionSay(channel, message)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llRegionSayTo</code></td>
+              <td class="fn-api"><code>this.world.regionSayTo(id, ch, msg)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llListen</code></td>
+              <td class="fn-api"><code>this.listen(channel, name, id, message)</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llListenRemove</code></td>
+              <td class="fn-api"><code>handle.remove()</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Uses handle pattern instead of integer ID</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llInstantMessage</code></td>
+              <td class="fn-api"><code>this.world.instantMessage(av, msg)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llOwnerSay</code></td>
+              <td class="fn-api"><code>this.say(0, message)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Channel 0 to owner only</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llMessageLinked</code></td>
+              <td class="fn-api"><code>this.sendLinkMessage(link, num, str, id)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Broadcasts within container; supports LINK_SET, LINK_THIS, LINK_ROOT, LINK_ALL_OTHERS, LINK_ALL_CHILDREN</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="object">
+        <h2>Object Manipulation</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetPos</code></td>
+              <td class="fn-api"><code>this.object.setPosition(pos)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Returns Promise, no 0.2s delay</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetPos</code></td>
+              <td class="fn-api"><code>this.object.getPosition()</code></td>
+              <td class="fn-return"><code>vector</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetRot</code></td>
+              <td class="fn-api"><code>this.object.setRotation(rot)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetRot</code></td>
+              <td class="fn-api"><code>this.object.getRotation()</code></td>
+              <td class="fn-return"><code>rotation</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetScale</code></td>
+              <td class="fn-api"><code>this.object.setScale(scale)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetScale</code></td>
+              <td class="fn-api"><code>this.object.getScale()</code></td>
+              <td class="fn-return"><code>vector</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetColor</code></td>
+              <td class="fn-api"><code>this.object.setColor(color, face)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetAlpha</code></td>
+              <td class="fn-api"><code>this.object.setAlpha(alpha, face)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetTexture</code></td>
+              <td class="fn-api"><code>this.object.setTexture(texture, face)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetText</code></td>
+              <td class="fn-api"><code>this.object.setText(text, color, alpha)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetPrimitiveParams</code></td>
+              <td class="fn-api"><code>this.object.setMaterial(config, face)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-partial">partial</span></td>
+              <td class="fn-notes">Uses MaterialConfig instead of rule list</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetObjectName</code></td>
+              <td class="fn-api"><code>this.object.name</code></td>
+              <td class="fn-return"><code>string</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetObjectDesc</code></td>
+              <td class="fn-api"><code>this.object.description</code></td>
+              <td class="fn-return"><code>string</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetKey</code></td>
+              <td class="fn-api"><code>this.object.id</code></td>
+              <td class="fn-return"><code>key</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetCreator</code></td>
+              <td class="fn-api"><code>this.object.creatorId</code></td>
+              <td class="fn-return"><code>key</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetOwner</code></td>
+              <td class="fn-api"><code>this.owner.id</code></td>
+              <td class="fn-return"><code>key</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetNumberOfPrims</code></td>
+              <td class="fn-api"><code>this.object.getLinkCount()</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetLinkKey</code></td>
+              <td class="fn-api"><code>this.object.getLink(num)?.id</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="physics">
+        <h2>Physics</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llApplyImpulse</code></td>
+              <td class="fn-api"><code>this.object.applyImpulse(force, local)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llApplyRotationalImpulse</code></td>
+              <td class="fn-api"><code>this.object.applyTorque(torque, local)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetForce</code></td>
+              <td class="fn-api"><code>this.object.applyForce(force, local)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetVel</code></td>
+              <td class="fn-api"><code>this.object.getVelocity()</code></td>
+              <td class="fn-return"><code>vector</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetBuoyancy</code></td>
+              <td class="fn-api"><code>this.object.setPhysics({ gravity: false })</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-partial">partial</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llMoveToTarget</code></td>
+              <td class="fn-api"><code>this.object.setPosition(target, { duration })</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Uses animation options instead of tau</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetPhysicsMaterial</code></td>
+              <td class="fn-api"><code>this.object.setPhysics(config)</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="agent">
+        <h2>Agent Interaction</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llDetectedKey</code></td>
+              <td class="fn-api"><code>detected[index].id</code></td>
+              <td class="fn-return"><code>key</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Uses array index instead of function</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llDetectedName</code></td>
+              <td class="fn-api"><code>detected[index].name</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llDetectedPos</code></td>
+              <td class="fn-api"><code>detected[index].position</code></td>
+              <td class="fn-return"><code>vector</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llDetectedRot</code></td>
+              <td class="fn-api"><code>detected[index].rotation</code></td>
+              <td class="fn-return"><code>rotation</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llDetectedVel</code></td>
+              <td class="fn-api"><code>detected[index].velocity</code></td>
+              <td class="fn-return"><code>vector</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llDetectedType</code></td>
+              <td class="fn-api"><code>detected[index].type</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetAgentSize</code></td>
+              <td class="fn-api"><code>agent.getPosition()</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-partial">partial</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llRequestPermissions</code></td>
+              <td class="fn-api"><code>this.requestPermissions(agent, perms)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSitTarget</code></td>
+              <td class="fn-api"><code>this.object.setSitTarget(offset, rot)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llAttachToAvatar</code></td>
+              <td class="fn-api"><code>this.world.attachToAvatar(point)</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llAttachToAvatarTemp</code></td>
+              <td class="fn-api"><code>this.world.attachToAvatarTemp(point)</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llDetachFromAvatar</code></td>
+              <td class="fn-api"><code>this.world.detachFromAvatar()</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetAttached</code></td>
+              <td class="fn-api"><code>this.object.getAttached()</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="effects">
+        <h2>Effects &amp; Sound</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llParticleSystem</code></td>
+              <td class="fn-api"><code>this.object.particles(config)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Uses ParticleConfig instead of rule list</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llPlaySound</code></td>
+              <td class="fn-api"><code>this.object.playSound(sound)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llLoopSound</code></td>
+              <td class="fn-api"><code>this.object.loopSound(sound, volume)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llStopSound</code></td>
+              <td class="fn-api"><code>this.object.stopSound()</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llTriggerSound</code></td>
+              <td class="fn-api"><code>this.object.playSound(sound, { spatial: false })</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetLinkPrimitiveParamsFast</code></td>
+              <td class="fn-api"><code>this.object.getLink(link)?.setMaterial(config)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-partial">partial</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="timer">
+        <h2>Timer &amp; Sleep</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetTimerEvent</code></td>
+              <td class="fn-api"><code>this.setTimer(interval)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Supports multiple named timers</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSleep</code> <span class="badge async-badge">async</span></td>
+              <td class="fn-api"><code>await this.delay(seconds)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Does NOT block other scripts (async)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="perception">
+        <h2>Perception &amp; Sensors</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSensor</code></td>
+              <td class="fn-api"><code>this.sensor(name, id, type, range, arc)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSensorRepeat</code></td>
+              <td class="fn-api"><code>this.sensorRepeat(name, id, type, range, arc, rate)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSensorRemove</code></td>
+              <td class="fn-api"><code>this.sensorRemove()</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llCastRay</code></td>
+              <td class="fn-api"><code>this.world.raycast(start, end)</code></td>
+              <td class="fn-return"><code>list</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetRegionAgentCount</code></td>
+              <td class="fn-api"><code>this.world.getAgentCount()</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetAgentList</code></td>
+              <td class="fn-api"><code>this.world.getAgents()</code></td>
+              <td class="fn-return"><code>list</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="data">
+        <h2>Data &amp; HTTP</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetNotecardLine</code> <span class="badge async-badge">async</span></td>
+              <td class="fn-api"><code>await this.world.storage.get(key)</code></td>
+              <td class="fn-return"><code>key</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Key-value storage replaces notecard reading</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llHTTPRequest</code> <span class="badge async-badge">async</span></td>
+              <td class="fn-api"><code>await this.world.http.get(url)</code></td>
+              <td class="fn-return"><code>key</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Returns Promise, no callback</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetFreeMemory</code></td>
+              <td class="fn-api"><code>/* no equivalent — no memory limit */</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-deprecated">deprecated</span></td>
+              <td class="fn-notes">No 64KB limit in poqpoq</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetNumberOfNotecardLines</code> <span class="badge async-badge">async</span></td>
+              <td class="fn-api"><code>await this.world.getNumberOfNotecardLines(name)</code></td>
+              <td class="fn-return"><code>key</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Async — returns key, triggers dataserver</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="math">
+        <h2>Math</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llVecDist</code></td>
+              <td class="fn-api"><code>v1.distanceTo(v2)</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llVecNorm</code></td>
+              <td class="fn-api"><code>v.normalize()</code></td>
+              <td class="fn-return"><code>vector</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llVecMag</code></td>
+              <td class="fn-api"><code>v.length()</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llRot2Euler</code></td>
+              <td class="fn-api"><code>rot.toEuler()</code></td>
+              <td class="fn-return"><code>vector</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llEuler2Rot</code></td>
+              <td class="fn-api"><code>Quaternion.fromEuler(v)</code></td>
+              <td class="fn-return"><code>rotation</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llAxes2Rot</code></td>
+              <td class="fn-api"><code>Quaternion.fromAxisAngle(axis, angle)</code></td>
+              <td class="fn-return"><code>rotation</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llFrand</code></td>
+              <td class="fn-api"><code>Math.random() * max</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llAbs</code></td>
+              <td class="fn-api"><code>Math.abs(val)</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llFloor</code></td>
+              <td class="fn-api"><code>Math.floor(val)</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llCeil</code></td>
+              <td class="fn-api"><code>Math.ceil(val)</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llRound</code></td>
+              <td class="fn-api"><code>Math.round(val)</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSqrt</code></td>
+              <td class="fn-api"><code>Math.sqrt(val)</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llPow</code></td>
+              <td class="fn-api"><code>Math.pow(base, exp)</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSin</code></td>
+              <td class="fn-api"><code>Math.sin(val)</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llCos</code></td>
+              <td class="fn-api"><code>Math.cos(val)</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llTan</code></td>
+              <td class="fn-api"><code>Math.tan(val)</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llAsin</code></td>
+              <td class="fn-api"><code>Math.asin(val)</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llAcos</code></td>
+              <td class="fn-api"><code>Math.acos(val)</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llAtan2</code></td>
+              <td class="fn-api"><code>Math.atan2(y, x)</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="string">
+        <h2>String</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llStringLength</code></td>
+              <td class="fn-api"><code>str.length</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSubStringIndex</code></td>
+              <td class="fn-api"><code>str.indexOf(substr)</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetSubString</code></td>
+              <td class="fn-api"><code>str.substring(start, end)</code></td>
+              <td class="fn-return"><code>string</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llDeleteSubString</code></td>
+              <td class="fn-api"><code>str.slice(0, start) + str.slice(end + 1)</code></td>
+              <td class="fn-return"><code>string</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llToLower</code></td>
+              <td class="fn-api"><code>str.toLowerCase()</code></td>
+              <td class="fn-return"><code>string</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llToUpper</code></td>
+              <td class="fn-api"><code>str.toUpperCase()</code></td>
+              <td class="fn-return"><code>string</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llParseString2List</code></td>
+              <td class="fn-api"><code>str.split(separator)</code></td>
+              <td class="fn-return"><code>list</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llStringTrim</code></td>
+              <td class="fn-api"><code>str.trim()</code></td>
+              <td class="fn-return"><code>string</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="list">
+        <h2>List / Array</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetListLength</code></td>
+              <td class="fn-api"><code>arr.length</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llList2String</code></td>
+              <td class="fn-api"><code>arr[index]</code></td>
+              <td class="fn-return"><code>string</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">TypeScript arrays are typed</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llList2Integer</code></td>
+              <td class="fn-api"><code>arr[index]</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llList2Float</code></td>
+              <td class="fn-api"><code>arr[index]</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llList2Vector</code></td>
+              <td class="fn-api"><code>arr[index]</code></td>
+              <td class="fn-return"><code>vector</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llListSort</code></td>
+              <td class="fn-api"><code>arr.sort()</code></td>
+              <td class="fn-return"><code>list</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llListFindList</code></td>
+              <td class="fn-api"><code>arr.findIndex()</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llList2CSV</code></td>
+              <td class="fn-api"><code>arr.join(',')</code></td>
+              <td class="fn-return"><code>string</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llCSV2List</code></td>
+              <td class="fn-api"><code>str.split(',')</code></td>
+              <td class="fn-return"><code>list</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llListInsertList</code></td>
+              <td class="fn-api"><code>arr.splice(pos, 0, ...items)</code></td>
+              <td class="fn-return"><code>list</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llDeleteSubList</code></td>
+              <td class="fn-api"><code>arr.splice(start, count)</code></td>
+              <td class="fn-return"><code>list</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="environment">
+        <h2>Environment</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetTimeOfDay</code></td>
+              <td class="fn-api"><code>this.world.environment.getTimeOfDay()</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetSunDirection</code></td>
+              <td class="fn-api"><code>this.world.environment.getSunDirection()</code></td>
+              <td class="fn-return"><code>vector</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetRegionName</code></td>
+              <td class="fn-api"><code>this.world.getRegionName()</code></td>
+              <td class="fn-return"><code>string</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetUnixTime</code></td>
+              <td class="fn-api"><code>this.world.getUnixTime()</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGround</code></td>
+              <td class="fn-api"><code>this.world.getGroundHeight(pos)</code></td>
+              <td class="fn-return"><code>float</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetRegionSunDirection</code></td>
+              <td class="fn-api"><code>this.world.environment.setTimeOfDay(hour)</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-partial">partial</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="ossl-npc">
+        <h2>OSSL — NPC</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osNpcCreate</code> <span class="badge async-badge">async</span></td>
+              <td class="fn-api"><code>this.world.npc.create(name, pos, appearance)</code></td>
+              <td class="fn-return"><code>key</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osNpcRemove</code> <span class="badge async-badge">async</span></td>
+              <td class="fn-api"><code>npc.remove()</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osNpcMoveTo</code> <span class="badge async-badge">async</span></td>
+              <td class="fn-api"><code>await npc.moveTo(pos)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Returns Promise</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osNpcSay</code></td>
+              <td class="fn-api"><code>npc.say(message, channel)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osNpcSit</code></td>
+              <td class="fn-api"><code>npc.sit(target)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osNpcStand</code></td>
+              <td class="fn-api"><code>npc.stand()</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osNpcPlayAnimation</code></td>
+              <td class="fn-api"><code>npc.playAnimation(anim)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osNpcStopAnimation</code></td>
+              <td class="fn-api"><code>npc.stopAnimation(anim)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osNpcSetRot</code></td>
+              <td class="fn-api"><code>npc.setRotation(rot)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="ossl-data">
+        <h2>OSSL — Data</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osGetNotecard</code> <span class="badge async-badge">async</span></td>
+              <td class="fn-api"><code>await this.world.storage.get(key)</code></td>
+              <td class="fn-return"><code>string</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osParseJSON</code></td>
+              <td class="fn-api"><code>JSON.parse(str)</code></td>
+              <td class="fn-return"><code>string</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Native JSON support</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="ossl-terrain">
+        <h2>OSSL — Terrain</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osSetTerrainHeight</code></td>
+              <td class="fn-api"><code>/* world.environment API */</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-unmapped">unmapped</span></td>
+              <td class="fn-notes">Planned for Phase 5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="ossl-agent">
+        <h2>OSSL — Agent</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osTeleportAgent</code></td>
+              <td class="fn-api"><code>await agent.teleport(destination)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="ossl-texture">
+        <h2>OSSL — Texture</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>osSetDynamicTextureURL</code></td>
+              <td class="fn-api"><code>this.object.setTexture(url, face)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-partial">partial</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="media">
+        <h2>Media on a Prim</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetPrimMediaParams</code></td>
+              <td class="fn-api"><code>this.object.setMediaParams(face, rules)</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Rules list uses PRIM_MEDIA_* constants</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llClearPrimMedia</code></td>
+              <td class="fn-api"><code>this.object.clearMedia(face)</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetPrimMediaParams</code></td>
+              <td class="fn-api"><code>this.object.getMediaParams(face, rules)</code></td>
+              <td class="fn-return"><code>list</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Returns list of parameter values</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetLinkMedia</code></td>
+              <td class="fn-api"><code>this.object.getLink(link)?.setMediaParams(face, rules)</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llClearLinkMedia</code></td>
+              <td class="fn-api"><code>this.object.getLink(link)?.clearMedia(face)</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetLinkMedia</code></td>
+              <td class="fn-api"><code>this.object.getLink(link)?.getMediaParams(face, rules)</code></td>
+              <td class="fn-return"><code>list</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="dialog">
+        <h2>Dialog / UI</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llDialog</code></td>
+              <td class="fn-api"><code>this.world.dialog(av, msg, buttons, ch)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llTextBox</code></td>
+              <td class="fn-api"><code>this.world.textBox(av, msg, ch)</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llLoadURL</code></td>
+              <td class="fn-api"><code>this.world.loadURL(av, msg, url)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llMapDestination</code></td>
+              <td class="fn-api"><code>this.world.mapDestination(sim, pos, look)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="inventory">
+        <h2>Inventory</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetInventoryNumber</code></td>
+              <td class="fn-api"><code>this.container.getAssetCount(type)</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetInventoryName</code></td>
+              <td class="fn-api"><code>this.container.getAssetName(type, index)</code></td>
+              <td class="fn-return"><code>string</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetInventoryType</code></td>
+              <td class="fn-api"><code>this.container.getAssetType(name)</code></td>
+              <td class="fn-return"><code>integer</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetInventoryKey</code></td>
+              <td class="fn-api"><code>this.container.getAsset(name)?.id</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetInventoryCreator</code></td>
+              <td class="fn-api"><code>this.container.getAssetCreator(name)</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetInventoryPermMask</code></td>
+              <td class="fn-api"><code>this.container.getAssetPermMask(name, mask)</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llAllowInventoryDrop</code></td>
+              <td class="fn-api"><code>this.object.allowInventoryDrop(flag)</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGiveInventory</code></td>
+              <td class="fn-api"><code>this.world.giveInventory(dest, name)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGiveInventoryList</code></td>
+              <td class="fn-api"><code>this.world.giveInventoryList(dest, folder, items)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llRemoveInventory</code></td>
+              <td class="fn-api"><code>this.container.removeAsset(name)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category-section" id="economy">
+        <h2>Economy / Money</h2>
+        <table class="fn-table">
+          <thead><tr><th>LSL Function</th><th>poqpoq API</th><th>Return</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGiveMoney</code></td>
+              <td class="fn-api"><code>this.world.giveMoney(target, amount)</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llTransferLindenDollars</code> <span class="badge async-badge">async</span></td>
+              <td class="fn-api"><code>await this.world.transferLindenDollars(target, amount)</code></td>
+              <td class="fn-return"><code>key</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes">Async — returns transaction key, triggers transaction_result</td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llSetPayPrice</code></td>
+              <td class="fn-api"><code>this.world.setPayPrice(default, buttons)</code></td>
+              <td class="fn-return"><code>void</code></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+            <tr class="fn-row">
+              <td class="fn-name"><code>llGetBalance</code></td>
+              <td class="fn-api"><code>this.world.getBalance()</code></td>
+              <td class="fn-return"><span class="text-dim">—</span></td>
+              <td><span class="badge status-mapped">mapped</span></td>
+              <td class="fn-notes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+    </main>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/nav.js"></script>
+</body>
+</html>
