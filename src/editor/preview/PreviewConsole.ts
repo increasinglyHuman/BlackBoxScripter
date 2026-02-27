@@ -15,7 +15,7 @@ export class PreviewConsole {
     this.container.style.cssText =
       "display: flex; flex-direction: column; height: 100%; " +
       "background: var(--poqpoq-background, #1e1e1e); " +
-      "border-top: 1px solid var(--poqpoq-border, #3e3e3e);";
+      "border-top: 2px solid #7B68EE;";
 
     // Header
     const header = document.createElement("div");
