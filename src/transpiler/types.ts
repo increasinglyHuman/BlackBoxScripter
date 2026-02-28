@@ -391,6 +391,8 @@ export interface TranspileOptions {
   filename?: string;
   /** Emit /* LSL: ... *​/ comments showing original LSL */
   emitSourceComments?: boolean;
+  /** Emit plain JavaScript (no type annotations). Required for sandbox execution. */
+  stripTypes?: boolean;
 }
 
 export interface TranspileResult {

@@ -11,6 +11,7 @@ export interface ToolbarCallbacks {
   onImport: () => void;
   onExport: () => void;
   onPreview?: () => void;
+  onRun?: () => void;
 }
 
 /** Inject keyframe animation for the spinning logo cube (CSS @keyframes can't be inline) */
@@ -126,6 +127,14 @@ export class Toolbar extends UIComponent {
     previewBtn.style.borderColor = "#7B68EE";
     previewBtn.style.color = "#9B8BFF";
 
+    // Run button
+    const runBtn = this.makeButton("\u25B6 Run", "Run script in preview (Ctrl+Enter)", () =>
+      this.callbacks.onRun?.()
+    );
+    runBtn.style.background = "rgba(76, 175, 80, 0.2)";
+    runBtn.style.borderColor = "#4CAF50";
+    runBtn.style.color = "#81C784";
+
     // Theme toggle
     const themeBtn = this.makeButton("\u263E", "Toggle dark/light theme", () =>
       this.callbacks.onThemeToggle()
@@ -134,6 +143,7 @@ export class Toolbar extends UIComponent {
     toolbar.appendChild(logo);
     toolbar.appendChild(transpileBtn);
     toolbar.appendChild(previewBtn);
+    toolbar.appendChild(runBtn);
     toolbar.appendChild(importBtn);
     toolbar.appendChild(exportBtn);
     toolbar.appendChild(themeBtn);

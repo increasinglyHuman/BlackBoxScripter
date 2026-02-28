@@ -108,6 +108,12 @@ function initEditor(): void {
         shell.transpileAndSave();
       }
 
+      // Ctrl+Enter / Cmd+Enter — run in preview
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+        e.preventDefault();
+        shell.runInPreview();
+      }
+
       // Ctrl+N / Cmd+N — new script
       if ((e.ctrlKey || e.metaKey) && e.key === "n") {
         e.preventDefault();

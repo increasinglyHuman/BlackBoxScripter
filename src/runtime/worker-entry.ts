@@ -12,6 +12,7 @@
 
 import { initializeSES, createCompartment, evaluateScript } from "./sandbox.js";
 import type { ScriptEndowments } from "./sandbox.js";
+import { WorldScript, Vector3, Quaternion } from "./sandbox-prelude.js";
 import type {
   WorkerInbound,
   WorkerOutbound,
@@ -109,6 +110,10 @@ function initScript(
       __owner: { id: "", name: "", username: "" }, // Injected by main thread
       __scriptId: scriptId,
       __exports: exports,
+      // Runtime types — provided so stripped imports still resolve
+      WorldScript,
+      Vector3,
+      Quaternion,
     };
 
     const compartment = createCompartment(name, endowments);

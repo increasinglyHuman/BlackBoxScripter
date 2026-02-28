@@ -31,6 +31,8 @@ import { EditorWrapper } from "../editor.js";
 import { EditorScriptManager } from "../script-manager.js";
 import { applyTheme, DARK_THEME, LIGHT_THEME, type EditorTheme } from "./theme.js";
 import { PreviewPanel } from "../preview/PreviewPanel.js";
+import { PreviewRuntime } from "../preview/PreviewRuntime.js";
+import { transpile } from "../../transpiler/transpile.js";
 
 export class Shell {
   private container: HTMLElement;
@@ -43,6 +45,7 @@ export class Shell {
   private tsOnlyEditor: EditorWrapper | null = null;
   private editorContainer: HTMLElement;
   private previewPanel: PreviewPanel | null = null;
+  private previewRuntime: PreviewRuntime | null = null;
   private previewContainer: HTMLElement | null = null;
   private currentTheme: EditorTheme;
   private isDark = true;
@@ -75,6 +78,7 @@ export class Shell {
       onImport: () => this.importFile(),
       onExport: () => this.exportFile(),
       onPreview: () => this.togglePreview(),
+      onRun: () => this.runInPreview(),
     });
 
     // Sidebar
@@ -128,6 +132,7 @@ export class Shell {
 
   /** Clean up everything */
   dispose(): void {
+    this.previewRuntime?.dispose();
     this.previewPanel?.dispose();
     this.dualMode?.dispose();
     this.tsOnlyEditor?.dispose();
@@ -212,7 +217,9 @@ export class Shell {
   /** Toggle the 3D preview panel on/off */
   private togglePreview(): void {
     if (this.previewOpen) {
-      // Close preview
+      // Close preview — dispose runtime before panel
+      this.previewRuntime?.dispose();
+      this.previewRuntime = null;
       this.previewPanel?.dispose();
       this.previewPanel = null;
       this.previewContainer?.remove();
@@ -235,14 +242,50 @@ export class Shell {
       // Create preview panel
       this.previewPanel = new PreviewPanel(this.previewContainer, {
         onEvent: (envelope) => {
-          // Touch events from Glitch — logged to console for now
-          // Full event dispatch will be wired in when ScriptHostAdapter is integrated
-          console.log("[Preview] Event:", envelope.event.type, envelope.objectId);
+          this.previewRuntime?.dispatchEvent(envelope);
         },
       });
 
+      // Create and start runtime
+      this.previewRuntime = new PreviewRuntime(this.previewPanel);
+      this.previewRuntime.start();
+
       this.layout();
     }
+  }
+
+  /** Run the current script in the 3D preview */
+  runInPreview(): void {
+    if (!this.previewRuntime || !this.previewOpen) return;
+
+    const active = this.scripts.getActive();
+    if (!active) return;
+
+    let code: string;
+    let scriptName: string;
+
+    if (active.language === "lsl" && this.dualMode) {
+      // First transpile updates the TS output panel (with types)
+      const tsResult = this.dualMode.transpileNow();
+      if (!tsResult.success) {
+        this.previewPanel?.getConsole().system("Transpile failed — fix errors first");
+        return;
+      }
+      // Second transpile produces plain JS for the SES sandbox (acorn can't parse TS)
+      const jsResult = transpile(this.dualMode.getSource(), {
+        className: tsResult.className,
+        stripTypes: true,
+      });
+      code = jsResult.code;
+      scriptName = tsResult.className;
+    } else if (this.tsOnlyEditor) {
+      code = this.tsOnlyEditor.getValue();
+      scriptName = active.name.replace(/\.ts$/i, "");
+    } else {
+      return;
+    }
+
+    this.previewRuntime.run(code, scriptName);
   }
 
   private toggleTheme(): void {

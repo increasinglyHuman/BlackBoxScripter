@@ -17,7 +17,7 @@
 
 import { build } from "esbuild";
 import { resolve, relative, dirname } from "node:path";
-import { statSync, mkdirSync } from "node:fs";
+import { statSync, mkdirSync, copyFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -83,6 +83,13 @@ async function main() {
   for (const fmt of formats) {
     await buildFormat(fmt);
   }
+
+  // Copy ESM bundle to public/ for Vite dev server + editor build
+  const publicRuntime = resolve(ROOT, "public/runtime");
+  mkdirSync(publicRuntime, { recursive: true });
+  const esmBundle = resolve(OUT_DIR, "worker-bundle.js");
+  copyFileSync(esmBundle, resolve(publicRuntime, "worker-bundle.js"));
+  console.log(`\n  Copied ESM bundle to public/runtime/ for Vite`);
 
   console.log("\nDone.");
 }

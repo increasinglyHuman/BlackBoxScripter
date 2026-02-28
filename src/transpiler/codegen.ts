@@ -84,6 +84,11 @@ export class CodeGenerator {
     this.resolver = new FunctionResolver();
   }
 
+  /** Shorthand for options.stripTypes */
+  private get plain(): boolean {
+    return this.options.stripTypes === true;
+  }
+
   /** Generate TypeScript from the AST */
   generate(): TranspileResult {
     try {
@@ -489,13 +494,13 @@ export class CodeGenerator {
         ["touch_start", "touch", "touch_end", "money", "control", "run_time_permissions"].includes(e.name)
       )
     );
-    if (hasTouchEvents) typeImports.push("type Agent");
+    if (hasTouchEvents) typeImports.push(this.plain ? "Agent" : "type Agent");
 
     // Check for detected events
     const hasDetectedEvents = this.ast.states.some((s) =>
       s.events.some((e) => DETECTED_EVENTS.has(e.name))
     );
-    if (hasDetectedEvents) typeImports.push("type DetectedInfo");
+    if (hasDetectedEvents) typeImports.push(this.plain ? "DetectedInfo" : "type DetectedInfo");
 
     // Add Vector3/Quaternion if used
     if (this.usedImports.has("Vector3")) typeImports.push("Vector3");
@@ -513,10 +518,14 @@ export class CodeGenerator {
 
   private emitHelpers(): string {
     const helpers: string[] = [];
+    const p = this.plain;
 
     if (this.usedHelpers.has("lslSubString")) {
+      const sig = p
+        ? `function lslSubString(s, start, end) {`
+        : `function lslSubString(s: string, start: number, end: number): string {`;
       helpers.push(`/** LSL substring with inclusive end and negative index support */
-function lslSubString(s: string, start: number, end: number): string {
+${sig}
   const len = s.length;
   if (start < 0) start = Math.max(0, len + start);
   if (end < 0) end = Math.max(0, len + end);
@@ -526,8 +535,11 @@ function lslSubString(s: string, start: number, end: number): string {
     }
 
     if (this.usedHelpers.has("lslDeleteSubString")) {
+      const sig = p
+        ? `function lslDeleteSubString(s, start, end) {`
+        : `function lslDeleteSubString(s: string, start: number, end: number): string {`;
       helpers.push(`/** LSL deleteSubString with inclusive end */
-function lslDeleteSubString(s: string, start: number, end: number): string {
+${sig}
   const len = s.length;
   if (start < 0) start = Math.max(0, len + start);
   if (end < 0) end = Math.max(0, len + end);
@@ -537,8 +549,11 @@ function lslDeleteSubString(s: string, start: number, end: number): string {
     }
 
     if (this.usedHelpers.has("lslInsertString")) {
+      const sig = p
+        ? `function lslInsertString(s, pos, insert) {`
+        : `function lslInsertString(s: string, pos: number, insert: string): string {`;
       helpers.push(`/** LSL insertString */
-function lslInsertString(s: string, pos: number, insert: string): string {
+${sig}
   return s.substring(0, pos) + insert + s.substring(pos);
 }`);
     }
@@ -556,7 +571,12 @@ function lslInsertString(s: string, pos: number, insert: string): string {
       (g): g is VariableDeclaration => g.type === "VariableDeclaration"
     );
     for (const v of vars) {
-      lines.push(`  private ${v.name}: ${lslTypeToTS(v.dataType)} = ${v.initializer ? this.emitExpression(v.initializer) : defaultValue(v.dataType)};`);
+      const init = v.initializer ? this.emitExpression(v.initializer) : defaultValue(v.dataType);
+      if (this.plain) {
+        lines.push(`  ${v.name} = ${init};`);
+      } else {
+        lines.push(`  private ${v.name}: ${lslTypeToTS(v.dataType)} = ${init};`);
+      }
     }
 
     if (vars.length > 0) lines.push("");
@@ -586,13 +606,19 @@ function lslInsertString(s: string, pos: number, insert: string): string {
 
   private emitFunction(decl: FunctionDeclaration): string {
     const isAsync = this.asyncFunctions.has(decl.name);
-    const retType = decl.returnType ? lslTypeToTS(decl.returnType) : "void";
-    const params = decl.parameters
-      .map((p) => `${p.name}: ${lslTypeToTS(p.dataType)}`)
-      .join(", ");
+    const params = this.plain
+      ? decl.parameters.map((p) => p.name).join(", ")
+      : decl.parameters.map((p) => `${p.name}: ${lslTypeToTS(p.dataType)}`).join(", ");
 
-    const prefix = isAsync ? "  private async " : "  private ";
-    const sig = `${prefix}${decl.name}(${params}): ${retType} {`;
+    let sig: string;
+    if (this.plain) {
+      const prefix = isAsync ? "  async " : "  ";
+      sig = `${prefix}${decl.name}(${params}) {`;
+    } else {
+      const retType = decl.returnType ? lslTypeToTS(decl.returnType) : "void";
+      const prefix = isAsync ? "  private async " : "  private ";
+      sig = `${prefix}${decl.name}(${params}): ${retType} {`;
+    }
 
     // Set up scope for the function body
     this.typeTracker.pushScope();
@@ -647,7 +673,9 @@ function lslInsertString(s: string, pos: number, insert: string): string {
   }
 
   private buildEventParams(handler: EventHandler, stateName: string): string {
-    const parts: string[] = [`this: ${this.className}`];
+    const p = this.plain;
+    // In plain JS mode, skip 'this: ClassName' (TS-only syntax)
+    const parts: string[] = p ? [] : [`this: ${this.className}`];
     const eventKey = `${stateName}:${handler.name}`;
     const hasDetected = this.needsDetected.get(eventKey) ?? false;
 
@@ -655,61 +683,61 @@ function lslInsertString(s: string, pos: number, insert: string): string {
       case "touch_start":
       case "touch":
       case "touch_end":
-        parts.push("agent: Agent");
-        parts.push("face: number");
+        parts.push(p ? "agent" : "agent: Agent");
+        parts.push(p ? "face" : "face: number");
         break;
       case "collision_start":
       case "collision":
       case "collision_end":
       case "sensor":
-        parts.push("detected: DetectedInfo[]");
+        parts.push(p ? "detected" : "detected: DetectedInfo[]");
         break;
       case "listen":
-        parts.push("channel: number");
-        parts.push("name: string");
-        parts.push("id: string");
-        parts.push("message: string");
+        parts.push(p ? "channel" : "channel: number");
+        parts.push(p ? "name" : "name: string");
+        parts.push(p ? "id" : "id: string");
+        parts.push(p ? "message" : "message: string");
         break;
       case "timer":
-        parts.push("timerId?: string");
+        parts.push(p ? "timerId" : "timerId?: string");
         break;
       case "on_rez":
-        parts.push("startParam: number");
+        parts.push(p ? "startParam" : "startParam: number");
         break;
       case "changed":
-        parts.push("change: number");
+        parts.push(p ? "change" : "change: number");
         break;
       case "attach":
-        parts.push("agentId: string");
+        parts.push(p ? "agentId" : "agentId: string");
         break;
       case "money":
-        parts.push("agent: Agent");
-        parts.push("amount: number");
+        parts.push(p ? "agent" : "agent: Agent");
+        parts.push(p ? "amount" : "amount: number");
         break;
       case "control":
-        parts.push("agent: Agent");
-        parts.push("held: number");
-        parts.push("changed: number");
+        parts.push(p ? "agent" : "agent: Agent");
+        parts.push(p ? "held" : "held: number");
+        parts.push(p ? "changed" : "changed: number");
         break;
       case "run_time_permissions":
-        parts.push("agent: Agent");
-        parts.push("permissions: number");
+        parts.push(p ? "agent" : "agent: Agent");
+        parts.push(p ? "permissions" : "permissions: number");
         break;
       case "link_message":
-        parts.push("senderLink: number");
-        parts.push("num: number");
-        parts.push("str: string");
-        parts.push("id: string");
+        parts.push(p ? "senderLink" : "senderLink: number");
+        parts.push(p ? "num" : "num: number");
+        parts.push(p ? "str" : "str: string");
+        parts.push(p ? "id" : "id: string");
         break;
       case "dataserver":
-        parts.push("queryId: string");
-        parts.push("data: string");
+        parts.push(p ? "queryId" : "queryId: string");
+        parts.push(p ? "data" : "data: string");
         break;
       case "http_response":
-        parts.push("requestId: string");
-        parts.push("status: number");
-        parts.push("headers: Record<string, string>");
-        parts.push("body: string");
+        parts.push(p ? "requestId" : "requestId: string");
+        parts.push(p ? "status" : "status: number");
+        parts.push(p ? "headers" : "headers: Record<string, string>");
+        parts.push(p ? "body" : "body: string");
         break;
       // state_entry, state_exit, no_sensor, etc. — no extra params
     }
@@ -797,6 +825,9 @@ function lslInsertString(s: string, pos: number, insert: string): string {
     const init = decl.initializer
       ? this.emitExpression(decl.initializer)
       : defaultValue(decl.dataType);
+    if (this.plain) {
+      return `${ind}let ${decl.name} = ${init};`;
+    }
     return `${ind}let ${decl.name}: ${lslTypeToTS(decl.dataType)} = ${init};`;
   }
 

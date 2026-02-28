@@ -75,6 +75,10 @@ export interface ScriptEndowments {
   __scriptId: string;
   /** Export collection point */
   __exports: Record<string, unknown>;
+  /** Runtime types — provided so stripped imports still resolve */
+  WorldScript: new () => unknown;
+  Vector3: new (...args: number[]) => unknown;
+  Quaternion: new (...args: number[]) => unknown;
 }
 
 /**
@@ -92,6 +96,8 @@ export function createCompartment(
   }
 
   // Harden all endowments to prevent the script from modifying them
+  // Note: __exports is intentionally NOT hardened — scripts must be able to
+  // assign to __exports.default when stripModuleSyntax rewrites exports.
   const hardened = harden({
     console: endowments.console,
     __worldAPI: endowments.__worldAPI,
@@ -99,7 +105,6 @@ export function createCompartment(
     __containerAPI: endowments.__containerAPI,
     __owner: endowments.__owner,
     __scriptId: endowments.__scriptId,
-    __exports: endowments.__exports,
     // Safe globals that SES already freezes but we explicitly provide
     Math,
     JSON,
@@ -117,7 +122,18 @@ export function createCompartment(
     // No: setTimeout, setInterval (proxied through timer manager)
   });
 
-  return new Compartment(hardened, {}, { name: `script:${name}` });
+  return new Compartment(
+    {
+      ...hardened,
+      __exports: endowments.__exports,
+      // Runtime types (unhardened so user classes can extend WorldScript)
+      WorldScript: endowments.WorldScript,
+      Vector3: endowments.Vector3,
+      Quaternion: endowments.Quaternion,
+    },
+    {},
+    { name: `script:${name}` }
+  );
 }
 
 /**
